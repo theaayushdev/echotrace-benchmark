@@ -1,0 +1,21 @@
+{
+  "objective": "root_count_mae_then_pair_f1",
+  "selection_split": "validation",
+  "semantic_model": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  },
+  "thresholds": {
+    "echograph_classic": 0.5,
+    "echograph_no_attribution": 0.55,
+    "echograph_no_chronology": 0.5,
+    "echograph_no_domain": 0.5,
+    "echograph_no_lexical": 0.55,
+    "echograph_no_links": 0.55,
+    "echograph_no_numeric": 0.45,
+    "lexical_bow": 0.5,
+    "minilm": 0.5,
+    "tfidf": 0.95
+  },
+  "version": "1.1"
+}
