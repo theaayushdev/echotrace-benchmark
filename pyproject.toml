@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "echotrace"
+version = "0.1.0"
+description = "Benchmarking false corroboration from dependent sources in research agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+research = ["statsmodels>=0.14"]
+local = ["torch>=2.3", "transformers>=4.45", "accelerate>=0.34", "bitsandbytes>=0.43"]
+cpu-research = ["torch>=2.3", "sentence-transformers>=3.0"]
+
+[project.scripts]
+echotrace = "echotrace.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["echotrace*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
