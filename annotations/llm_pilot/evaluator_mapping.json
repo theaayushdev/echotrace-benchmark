@@ -1,0 +1,570 @@
+[
+  {
+    "review_id": "review_319b6e06bb93f97b",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_a2a2eea5f952e2a1:standard",
+    "case_id": "case_a2a2eea5f952e2a1",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_bfa35d9e6d198a50",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_30a55b328a7b71c2:standard",
+    "case_id": "case_30a55b328a7b71c2",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_c092742f4f29a95d",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_3780bf9539e471c1:standard",
+    "case_id": "case_3780bf9539e471c1",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_b9df3ef070ac15bb",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_9e6fcb2216783e9f:standard",
+    "case_id": "case_9e6fcb2216783e9f",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_c6b4a51ffd4a4989",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_9e1f32d93e02e183:standard",
+    "case_id": "case_9e1f32d93e02e183",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_302fbc0e02abcc0b",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_f337f974134644d2:echograph",
+    "case_id": "case_f337f974134644d2",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_08a0439863e45b6a",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_d2d59dddbe30c957:instruction",
+    "case_id": "case_d2d59dddbe30c957",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_d5a0b8746d262b43",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_30a55b328a7b71c2:instruction",
+    "case_id": "case_30a55b328a7b71c2",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_a87322d915e36383",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_9e6fcb2216783e9f:instruction",
+    "case_id": "case_9e6fcb2216783e9f",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_2228411096f08bdf",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_1eb16ef20e182209:echograph",
+    "case_id": "case_1eb16ef20e182209",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_ba7d19b90fe6230b",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_d2d59dddbe30c957:instruction",
+    "case_id": "case_d2d59dddbe30c957",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_64df7464d1cda3bc",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_f337f974134644d2:instruction",
+    "case_id": "case_f337f974134644d2",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_edbfaad8e69f8b2e",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_30a55b328a7b71c2:echograph",
+    "case_id": "case_30a55b328a7b71c2",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_016f9d1c00767e0e",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_65e61ce03c13e6e4:instruction",
+    "case_id": "case_65e61ce03c13e6e4",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_a6319c6f31cbc1ad",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_9e1f32d93e02e183:echograph",
+    "case_id": "case_9e1f32d93e02e183",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_c89c57cb24187375",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_9e6fcb2216783e9f:echograph",
+    "case_id": "case_9e6fcb2216783e9f",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_76b833cefafdadb3",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_65e61ce03c13e6e4:echograph",
+    "case_id": "case_65e61ce03c13e6e4",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_96e13076ef547b81",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_9e1f32d93e02e183:echograph",
+    "case_id": "case_9e1f32d93e02e183",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_d27469415ab4ea36",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_3f9e5e8d28650a72:instruction",
+    "case_id": "case_3f9e5e8d28650a72",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_14e45a5be1e0cf27",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_65e61ce03c13e6e4:instruction",
+    "case_id": "case_65e61ce03c13e6e4",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_105a96ce78d43605",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_3780bf9539e471c1:standard",
+    "case_id": "case_3780bf9539e471c1",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_66b06c68ba8c3b79",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_1eb16ef20e182209:instruction",
+    "case_id": "case_1eb16ef20e182209",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_1403f4abeaef080f",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_a2a2eea5f952e2a1:instruction",
+    "case_id": "case_a2a2eea5f952e2a1",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_e816134eb02bbe1d",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_2d1f1f538a8843ab:standard",
+    "case_id": "case_2d1f1f538a8843ab",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_8faa22a3b7a809f7",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_3780bf9539e471c1:instruction",
+    "case_id": "case_3780bf9539e471c1",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_a5e327efbb5ae89a",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_a2a2eea5f952e2a1:echograph",
+    "case_id": "case_a2a2eea5f952e2a1",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_37729edeb417f074",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_3780bf9539e471c1:instruction",
+    "case_id": "case_3780bf9539e471c1",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_16ec906e3fb297c4",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_a2a2eea5f952e2a1:instruction",
+    "case_id": "case_a2a2eea5f952e2a1",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_082df3739c2413bb",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_f337f974134644d2:standard",
+    "case_id": "case_f337f974134644d2",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_674453d79671da17",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_30a55b328a7b71c2:echograph",
+    "case_id": "case_30a55b328a7b71c2",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_33fb99f550bcfa93",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_eae908bafae829db:standard",
+    "case_id": "case_eae908bafae829db",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_59526adefbdc504c",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_d2d59dddbe30c957:echograph",
+    "case_id": "case_d2d59dddbe30c957",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_5159ebc842ee0348",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_1eb16ef20e182209:standard",
+    "case_id": "case_1eb16ef20e182209",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_58fa456e84983d4b",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_3780bf9539e471c1:echograph",
+    "case_id": "case_3780bf9539e471c1",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_36f8e758ba0cd77d",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_65e61ce03c13e6e4:standard",
+    "case_id": "case_65e61ce03c13e6e4",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_8d07395267732a4e",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_9e1f32d93e02e183:instruction",
+    "case_id": "case_9e1f32d93e02e183",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_90ffb04168e8c6ac",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_3780bf9539e471c1:echograph",
+    "case_id": "case_3780bf9539e471c1",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_5752638b99134c92",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_65e61ce03c13e6e4:standard",
+    "case_id": "case_65e61ce03c13e6e4",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_34334d8607c29916",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_d2d59dddbe30c957:standard",
+    "case_id": "case_d2d59dddbe30c957",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_dd36e87148422e56",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_9e6fcb2216783e9f:echograph",
+    "case_id": "case_9e6fcb2216783e9f",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_5ca3278cc65060a3",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_3f9e5e8d28650a72:instruction",
+    "case_id": "case_3f9e5e8d28650a72",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_375e0a78af698b59",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_1eb16ef20e182209:instruction",
+    "case_id": "case_1eb16ef20e182209",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_36d49ea3d5af8d86",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_9e1f32d93e02e183:standard",
+    "case_id": "case_9e1f32d93e02e183",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_03e282bb37c16c61",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_30a55b328a7b71c2:standard",
+    "case_id": "case_30a55b328a7b71c2",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_f846965a97e47706",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_2d1f1f538a8843ab:standard",
+    "case_id": "case_2d1f1f538a8843ab",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_9a44beb9d5b32107",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_a2a2eea5f952e2a1:standard",
+    "case_id": "case_a2a2eea5f952e2a1",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_d08247695504d393",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_eae908bafae829db:echograph",
+    "case_id": "case_eae908bafae829db",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_395bc75a19a9c1ee",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_3f9e5e8d28650a72:standard",
+    "case_id": "case_3f9e5e8d28650a72",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_ddf26342368e05db",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_f337f974134644d2:standard",
+    "case_id": "case_f337f974134644d2",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_424965471b3e2790",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_eae908bafae829db:standard",
+    "case_id": "case_eae908bafae829db",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_e596c95470481c65",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_65e61ce03c13e6e4:echograph",
+    "case_id": "case_65e61ce03c13e6e4",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_95cfdefb593579e0",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_9e1f32d93e02e183:instruction",
+    "case_id": "case_9e1f32d93e02e183",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_80f0b5be49e7baea",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_3f9e5e8d28650a72:echograph",
+    "case_id": "case_3f9e5e8d28650a72",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_5af2db80ba4c3045",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_f337f974134644d2:instruction",
+    "case_id": "case_f337f974134644d2",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_0c96ec9772b627d5",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_1eb16ef20e182209:echograph",
+    "case_id": "case_1eb16ef20e182209",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_4c78db4b3e067f20",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_2d1f1f538a8843ab:instruction",
+    "case_id": "case_2d1f1f538a8843ab",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_9a37d2ef3946db7a",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_2d1f1f538a8843ab:instruction",
+    "case_id": "case_2d1f1f538a8843ab",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_cc32a796232dbfc6",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_9e6fcb2216783e9f:standard",
+    "case_id": "case_9e6fcb2216783e9f",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_ab1c11877627e8c6",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_d2d59dddbe30c957:echograph",
+    "case_id": "case_d2d59dddbe30c957",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_8be255c86ac754fd",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_eae908bafae829db:echograph",
+    "case_id": "case_eae908bafae829db",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_61cf32702f62e807",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_1eb16ef20e182209:standard",
+    "case_id": "case_1eb16ef20e182209",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_3039d1332e95e87b",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_3f9e5e8d28650a72:standard",
+    "case_id": "case_3f9e5e8d28650a72",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_9c1454a9d29d2f71",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_d2d59dddbe30c957:standard",
+    "case_id": "case_d2d59dddbe30c957",
+    "arm": "standard"
+  },
+  {
+    "review_id": "review_d13ffffdf4e5064d",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_2d1f1f538a8843ab:echograph",
+    "case_id": "case_2d1f1f538a8843ab",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_281b165d6f9c1500",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_2d1f1f538a8843ab:echograph",
+    "case_id": "case_2d1f1f538a8843ab",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_c2ebfa95ac31b82c",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_30a55b328a7b71c2:instruction",
+    "case_id": "case_30a55b328a7b71c2",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_72c5790fd4a810bf",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_eae908bafae829db:instruction",
+    "case_id": "case_eae908bafae829db",
+    "arm": "instruction"
+  },
+  {
+    "review_id": "review_ae5c2b036920eb82",
+    "run": "llm-pilot-v1.2",
+    "provider": "openrouter",
+    "request_id": "case_f337f974134644d2:echograph",
+    "case_id": "case_f337f974134644d2",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_c704875f740763c5",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_a2a2eea5f952e2a1:echograph",
+    "case_id": "case_a2a2eea5f952e2a1",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_429fb1b64dedf645",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_3f9e5e8d28650a72:echograph",
+    "case_id": "case_3f9e5e8d28650a72",
+    "arm": "echograph"
+  },
+  {
+    "review_id": "review_762d4ee5d19a79c5",
+    "run": "llm-pilot-v1.2",
+    "provider": "groq",
+    "request_id": "case_eae908bafae829db:instruction",
+    "case_id": "case_eae908bafae829db",
+    "arm": "instruction"
+  }
+]

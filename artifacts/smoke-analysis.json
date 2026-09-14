@@ -1,0 +1,67 @@
+{
+  "comparisons": {
+    "citation_precision": {
+      "candidate_minus_baseline": 0.0,
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "holm_p_value": 1.0,
+      "n_worlds": 20,
+      "p_value": 1.0
+    },
+    "confidence_brier": {
+      "candidate_minus_baseline": 0.10840000000000001,
+      "ci_high": 0.1092,
+      "ci_low": 0.10800000000000001,
+      "holm_p_value": 0.0006999300069993001,
+      "n_worlds": 20,
+      "p_value": 9.999000099990002e-05
+    },
+    "evidence_family_pair_f1": {
+      "candidate_minus_baseline": 0.5028571428571429,
+      "ci_high": 0.5085714285714286,
+      "ci_low": 0.4999999999999999,
+      "holm_p_value": 0.0006999300069993001,
+      "n_worlds": 20,
+      "p_value": 9.999000099990002e-05
+    },
+    "evidence_family_recall": {
+      "candidate_minus_baseline": 0.0,
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "holm_p_value": 1.0,
+      "n_worlds": 20,
+      "p_value": 1.0
+    },
+    "false_corroboration": {
+      "candidate_minus_baseline": -0.4,
+      "ci_high": -0.4,
+      "ci_low": -0.4,
+      "holm_p_value": 0.0006999300069993001,
+      "n_worlds": 20,
+      "p_value": 9.999000099990002e-05
+    },
+    "root_count_mae": {
+      "candidate_minus_baseline": -1.4099999999999997,
+      "ci_high": -1.4,
+      "ci_low": -1.4300000000000002,
+      "holm_p_value": 0.0006999300069993001,
+      "n_worlds": 20,
+      "p_value": 9.999000099990002e-05
+    },
+    "verdict_accuracy": {
+      "candidate_minus_baseline": 0.0,
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "holm_p_value": 1.0,
+      "n_worlds": 20,
+      "p_value": 1.0
+    }
+  },
+  "coverage": {
+    "baseline": 1.0,
+    "candidate": 1.0
+  },
+  "estimand": "candidate minus baseline; negative favors candidate for MAE/FCR",
+  "mitigation_coverage_gate": true,
+  "mixed_effects": "not run: install the research extra to fit mixed-effects models"
+}

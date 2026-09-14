@@ -1,0 +1,22 @@
+{
+  "openai-family": {
+    "model_id": "REPLACE_WITH_DATED_STABLE_MODEL",
+    "endpoint": "https://api.openai.com/v1/chat/completions",
+    "key_env": "OPENAI_API_KEY",
+    "input_cost_per_million": 0.0,
+    "output_cost_per_million": 0.0,
+    "max_output_tokens": 1200,
+    "max_input_tokens": 20000,
+    "retry_attempts": 3
+  },
+  "hosted-open-family": {
+    "model_id": "REPLACE_WITH_HOSTED_OPEN_MODEL",
+    "endpoint": "https://REPLACE_WITH_OPENAI_COMPATIBLE_ENDPOINT/v1/chat/completions",
+    "key_env": "HOSTED_MODEL_API_KEY",
+    "input_cost_per_million": 0.0,
+    "output_cost_per_million": 0.0,
+    "max_output_tokens": 1200,
+    "max_input_tokens": 20000,
+    "retry_attempts": 3
+  }
+}

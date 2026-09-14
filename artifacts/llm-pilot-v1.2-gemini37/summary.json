@@ -1,0 +1,33 @@
+{
+  "scope": "exploratory; no confirmatory or human-validation claim",
+  "plan_sha256": "4b2be8a9338be57f9ed330366ff7d0cc585882633520e085fd28f25482a6a7c9",
+  "providers": {
+    "gemini": {
+      "model": "gemini-3.7-flash",
+      "planned": 36,
+      "attempted": 1,
+      "valid": 0,
+      "status_counts": {
+        "http_error": 1
+      },
+      "arms": {
+        "standard": {
+          "n_valid": 0,
+          "accuracy": null,
+          "brier": null
+        },
+        "instruction": {
+          "n_valid": 0,
+          "accuracy": null,
+          "brier": null
+        },
+        "echograph": {
+          "n_valid": 0,
+          "accuracy": null,
+          "brier": null
+        }
+      },
+      "complete_paired_cases": 0
+    }
+  }
+}

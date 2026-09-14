@@ -1,0 +1,31 @@
+cluster_id,cluster_type,topic_family,selection_rule,status
+real_d01,determinate,public_health,"Primary institutional release plus at least two explicitly linked reports",uncollected
+real_d02,determinate,climate_science,"Primary study or dataset plus at least two explicitly attributed summaries",uncollected
+real_d03,determinate,astronomy,"Mission or journal source plus at least two explicitly attributed reports",uncollected
+real_d04,determinate,ecology,"Primary study plus at least two reports naming or linking it",uncollected
+real_d05,determinate,energy,"Primary study or agency report plus at least two attributed summaries",uncollected
+real_d06,determinate,earth_science,"Primary monitoring source plus at least two reports naming it",uncollected
+real_d07,determinate,agriculture,"Primary study plus at least two reports with visible attribution",uncollected
+real_d08,determinate,neuroscience,"Primary paper plus at least two summaries that identify the paper",uncollected
+real_d09,determinate,materials_science,"Primary paper plus at least two attributed science-news reports",uncollected
+real_d10,determinate,conservation,"Primary report plus at least two pages with explicit provenance",uncollected
+real_d11,determinate,meteorology,"Agency observation or dataset plus at least two attributed reports",uncollected
+real_d12,determinate,ocean_science,"Primary study or dataset plus at least two linked summaries",uncollected
+real_d13,determinate,epidemiology,"Primary study plus at least two reports explicitly identifying it",uncollected
+real_d14,determinate,robotics,"Primary paper or lab release plus at least two attributed reports",uncollected
+real_d15,determinate,computer_science,"Primary paper plus at least two reports naming the same work",uncollected
+real_d16,determinate,paleontology,"Primary paper plus at least two reports with explicit attribution",uncollected
+real_d17,determinate,genetics,"Primary paper plus at least two summaries naming the study",uncollected
+real_d18,determinate,water_science,"Primary agency or journal source plus two attributed reports",uncollected
+real_d19,determinate,air_quality,"Primary dataset or study plus two reports naming the source",uncollected
+real_d20,determinate,space_weather,"Primary agency observation plus two explicitly sourced reports",uncollected
+real_a01,ambiguous,public_health,"Three reports making the same narrow claim without sufficient visible provenance",uncollected
+real_a02,ambiguous,climate_science,"Three similar reports whose source-family relation cannot be established",uncollected
+real_a03,ambiguous,ecology,"Three reports with missing or circular attribution",uncollected
+real_a04,ambiguous,energy,"Three reports naming no inspectable primary observation",uncollected
+real_a05,ambiguous,astronomy,"Three reports with vague attribution that does not resolve lineage",uncollected
+real_a06,ambiguous,agriculture,"Three reports where shared wording alone is the only dependence signal",uncollected
+real_a07,ambiguous,earth_science,"Three reports with inaccessible or absent upstream provenance",uncollected
+real_a08,ambiguous,materials_science,"Three reports with conflicting upstream-source indications",uncollected
+real_a09,ambiguous,conservation,"Three reports whose apparent common source cannot be verified",uncollected
+real_a10,ambiguous,computer_science,"Three reports with indeterminate transmission despite a shared claim",uncollected

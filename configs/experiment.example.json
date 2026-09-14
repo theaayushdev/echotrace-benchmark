@@ -1,0 +1,11 @@
+{
+  "dataset": "data/echobench-reviewed.jsonl",
+  "split": "test",
+  "track": "naturalistic",
+  "budget_usd": 1000.0,
+  "threshold": 0.60,
+  "models_file": "configs/models.json",
+  "models": ["commercial_a", "commercial_b", "commercial_c", "open_a", "open_b", "open_c"],
+  "methods": ["standard", "domain_dedup", "embedding_dedup", "mmr", "echograph", "gold_graph"],
+  "output_dir": "artifacts/runs/frozen"
+}

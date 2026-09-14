@@ -1,0 +1,17 @@
+{
+  "version": "1.2-development-only",
+  "seed": 20260913,
+  "worlds": 3,
+  "cases": 33,
+  "split": "train only",
+  "changed_dates": 17,
+  "remaining_reversed_edges": 0,
+  "limitations": "Same prose templates; no human validation; not a confirmatory evaluation set",
+  "sha256": {
+    "scripts/generate_development_v1_2.py": "e1a97785c7690d701bb9589f49cd94432f89a16315f2cd7bee7b903f5dea7d6d",
+    "scripts/generate_benchmark_v1.py": "7a1f570ab89649c64e380c8e1b222df7c6de95cb5b49b4f340818063f7b43234",
+    "echotrace/chronology.py": "e765291bb4ade046f5e1a2090de77832394b396859fd35d8c2784aa067f12704",
+    "data/development-v1.2/public.jsonl": "c326a3dceadc5033aacaec0a28e4bb37bb887e5ec1e018a3a84e72f6a0c59764",
+    "data/development-v1.2/gold.jsonl": "4fe20e72b91cccbd05a2bb2f1a816f5dc117bc6d236100a672ed99d232228176"
+  }
+}

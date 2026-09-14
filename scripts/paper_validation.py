@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""Exploratory train/validation audit; never evaluates the held-out test split.
+
+Gold support membership is an oracle input. This is NOT an agent experiment.
+Thresholds are displayed, not selected for a confirmatory evaluation.
+"""
+from pathlib import Path
+import hashlib
+import json
+import sys
+from collections import Counter, defaultdict
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+import numpy as np
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from echotrace.io import load_cases
+from echotrace.echo_graph import EchoGraph, LogisticDependencyClassifier, training_pairs
+from echotrace.baselines import group_by_domain, group_by_similarity
+from echotrace.metrics import family_pair_f1
+
+CONDITIONS = ["exact_echo", "paraphrase_echo", "cross_domain_echo", "two_roots", "four_roots"]
+LABELS = ["Verbatim", "Paraphrase", "Unattributed", "Two roots", "Four roots"]
+
+
+def evaluate(cases, grouping):
+    rows = []
+    for case in cases:
+        support = set(case.gold_claims[0].supporting_doc_ids)
+        docs = [d for d in case.documents if d.doc_id in support]
+        groups = grouping(docs)
+        assert {d for g in groups for d in g} == support
+        rows.append(dict(case_id=case.case_id, world=case.micro_world_id,
+                         condition=case.condition, gold=case.gold_root_count,
+                         predicted=len(groups), mae=abs(len(groups)-case.gold_root_count),
+                         f1=family_pair_f1(case.gold_families, groups),
+                         false=int(case.gold_root_count == 1 and len(groups) >= 2)))
+    echo = [r for r in rows if r["gold"] == 1]
+    summary = dict(mae=float(np.mean([r["mae"] for r in rows])),
+                   f1=float(np.mean([r["f1"] for r in rows])),
+                   fcr=float(np.mean([r["false"] for r in echo])))
+    return dict(summary=summary, rows=rows)
+
+
+def main():
+    dataset = ROOT / "data/echobench.jsonl"
+    cases = load_cases(dataset)
+    train = [c for c in cases if c.split == "train"]
+    val = [c for c in cases if c.split == "validation"]
+    features, labels = training_pairs(train)
+    clf = LogisticDependencyClassifier.fit(features, labels)
+    graph = EchoGraph(clf, threshold=0.60)
+    methods = {
+        "URL count": lambda ds: tuple((d.doc_id,) for d in ds),
+        "Domain grouping": group_by_domain,
+        "Lexical grouping": group_by_similarity,
+        "EchoGraph": lambda ds: graph.infer(ds).evidence_families,
+    }
+    results = {name: evaluate(val, fn) for name, fn in methods.items()}
+    grid = []
+    for threshold in np.arange(0.30, 0.901, 0.05):
+        g = EchoGraph(clf, threshold=float(threshold))
+        report = evaluate(val, lambda ds: g.infer(ds).evidence_families)
+        grid.append(dict(threshold=round(float(threshold), 2), **report["summary"]))
+    # Bootstrap worlds with all five matched conditions retained.
+    by_world = defaultdict(list)
+    for a, b in zip(results["URL count"]["rows"], results["EchoGraph"]["rows"]):
+        assert a["case_id"] == b["case_id"]
+        by_world[a["world"]].append(b["mae"] - a["mae"])
+    values = np.array([np.mean(v) for _, v in sorted(by_world.items())])
+    rng = np.random.default_rng(20260911)
+    means = rng.choice(values, (10000, len(values)), replace=True).mean(axis=1)
+    report = dict(status="exploratory; generated data; oracle support; validation only",
+                  dataset_sha256=hashlib.sha256(dataset.read_bytes()).hexdigest(),
+                  script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                  source_sha256={str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+                                 for p in [ROOT/'echotrace/echo_graph.py', ROOT/'echotrace/baselines.py', ROOT/'echotrace/metrics.py']},
+                  numpy_version=np.__version__, train_cases=len(train), validation_cases=len(val),
+                  training_pairs=len(labels), positive_pairs=sum(labels), threshold=0.60,
+                  weights=clf.weights.tolist(), results=results, threshold_grid=grid,
+                  delta_mae=dict(estimate=float(values.mean()),
+                                 interval=np.quantile(means, [0.025, 0.975]).tolist()),
+                  inventory=dict(cases=len(cases), worlds=len({c.micro_world_id for c in cases}),
+                                 document_instances=sum(len(c.documents) for c in cases),
+                                 verdicts=dict(Counter(c.gold_claims[0].verdict for c in cases)),
+                                 unique_domains_per_case=dict(Counter(len({d.domain for d in c.documents}) for c in cases)),
+                                 review_status=dict(Counter(c.review_status for c in cases))))
+    out = ROOT / "artifacts/paper-validation.json"
+    out.write_text(json.dumps(report, indent=2) + "\n")
+    generated = ROOT / "paper/generated"
+    generated.mkdir(exist_ok=True)
+    lines = ["% Generated by scripts/paper_validation.py; oracle-support validation only."]
+    for name, result in results.items():
+        s = result["summary"]
+        lines.append(f"{name} & {s['mae']:.3f} & {s['fcr']:.3f} & {s['f1']:.3f} " + r"\\")
+    (generated / "validation-rows.tex").write_text(lines[0] + "\n" + r"\newcommand{\ValidationRows}{" + "\n" + "\n".join(lines[1:]) + "\n}\n")
+    plt.rcParams.update({"font.family":"serif", "font.size":8, "axes.spines.top":False,
+                         "axes.spines.right":False, "pdf.fonttype":42, "ps.fonttype":42})
+    fig, axes = plt.subplots(1, 2, figsize=(7.05, 2.45), constrained_layout=True)
+    for name, style, color in [("URL count", "s--", "0.5"), ("Lexical grouping", "^:", "#9b5918"),
+                                ("EchoGraph", "o-", "#174a70")]:
+        rows = results[name]["rows"]
+        vals = [np.mean([r["mae"] for r in rows if r["condition"] == c]) for c in CONDITIONS]
+        axes[0].plot(range(5), vals, style, color=color, label=name, markersize=4)
+    axes[0].set_xticks(range(5), LABELS, rotation=20, ha="right")
+    axes[0].set_ylabel("Root-count MAE (lower is better)")
+    axes[0].set_ylim(-0.08, 3.25)
+    axes[0].legend(frameon=False, fontsize=7)
+    axes[0].set_title("(a) Error by matched condition", loc="left", fontsize=9)
+    axes[1].plot([g['threshold'] for g in grid], [g['mae'] for g in grid], 'o-', color='#174a70', markersize=3, label="Root MAE")
+    axes[1].plot([g['threshold'] for g in grid], [g['f1'] for g in grid], 's--', color='0.5', markersize=3, label="Family-pair F1")
+    axes[1].axvline(0.60, color="0.7", linewidth=0.8, linestyle=":")
+    axes[1].set_xlabel("Graph threshold")
+    axes[1].set_ylabel("Metric value")
+    axes[1].set_title("(b) Exploratory threshold sensitivity", loc="left", fontsize=9)
+    axes[1].legend(frameon=False, fontsize=7)
+    for ax in axes:
+        ax.grid(axis='y', color='0.91', linewidth=.5)
+        ax.set_axisbelow(True)
+    fig.savefig(ROOT / "paper/figures/validation.pdf")
+    fig.savefig(ROOT / "paper/figures/validation.png", dpi=220)
+    print(json.dumps({"results": {k:v['summary'] for k,v in results.items()},
+                      "delta_mae":report['delta_mae'], "inventory":report['inventory']}, indent=2))
+
+
+if __name__ == "__main__":
+    main()

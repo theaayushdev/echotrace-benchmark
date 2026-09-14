@@ -1,0 +1,2566 @@
+{
+  "status": "exploratory; generated data; oracle support; validation only",
+  "dataset_sha256": "815b59e6331e9e7967a411ab25994cdbe99183f0fdbd7852c8958de5458675bc",
+  "script_sha256": "b381e5099a457b43efc6334bf80f48f14f87dd6379321708bf1b1cde7358e1e0",
+  "source_sha256": {
+    "echotrace/echo_graph.py": "7cba1b91d70388b1e86144d9ca08baa37328f9dddaa8ae01bd16feb84f46704d",
+    "echotrace/baselines.py": "c1117351ad96709c67ac1de4631176a5865a9f99e81c63b00f75778bd83ba894",
+    "echotrace/metrics.py": "6937da124bac98a72cb05d10cc04d69ced5fd848c7f798bb2d392a0cf7bb84af"
+  },
+  "numpy_version": "1.26.4",
+  "train_cases": 240,
+  "validation_cases": 60,
+  "training_pairs": 1440,
+  "positive_pairs": 960,
+  "threshold": 0.6,
+  "weights": [
+    -0.383550820859531,
+    2.0840895001392408,
+    -0.03984828703764794,
+    0.7491084781959889,
+    0.8594552401589975,
+    0.5022743007131122,
+    -0.14339700940010855,
+    0.0,
+    1.0615890771003367
+  ],
+  "results": {
+    "URL count": {
+      "summary": {
+        "mae": 2.2,
+        "f1": 0.2,
+        "fcr": 1.0
+      },
+      "rows": [
+        {
+          "case_id": "mw-048-c0",
+          "world": "mw-048",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c1",
+          "world": "mw-048",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c2",
+          "world": "mw-048",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c3",
+          "world": "mw-048",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-048-c4",
+          "world": "mw-048",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c0",
+          "world": "mw-049",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-049-c1",
+          "world": "mw-049",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-049-c2",
+          "world": "mw-049",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-049-c3",
+          "world": "mw-049",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c4",
+          "world": "mw-049",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c0",
+          "world": "mw-050",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-050-c1",
+          "world": "mw-050",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-050-c2",
+          "world": "mw-050",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-050-c3",
+          "world": "mw-050",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c4",
+          "world": "mw-050",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c0",
+          "world": "mw-051",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-051-c1",
+          "world": "mw-051",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-051-c2",
+          "world": "mw-051",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-051-c3",
+          "world": "mw-051",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c4",
+          "world": "mw-051",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c0",
+          "world": "mw-052",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c1",
+          "world": "mw-052",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c2",
+          "world": "mw-052",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c3",
+          "world": "mw-052",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c4",
+          "world": "mw-052",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c0",
+          "world": "mw-053",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c1",
+          "world": "mw-053",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c2",
+          "world": "mw-053",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c3",
+          "world": "mw-053",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c4",
+          "world": "mw-053",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c0",
+          "world": "mw-054",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-054-c1",
+          "world": "mw-054",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-054-c2",
+          "world": "mw-054",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-054-c3",
+          "world": "mw-054",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c4",
+          "world": "mw-054",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c0",
+          "world": "mw-055",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-055-c1",
+          "world": "mw-055",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-055-c2",
+          "world": "mw-055",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-055-c3",
+          "world": "mw-055",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c4",
+          "world": "mw-055",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c0",
+          "world": "mw-056",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c1",
+          "world": "mw-056",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c2",
+          "world": "mw-056",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c3",
+          "world": "mw-056",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c4",
+          "world": "mw-056",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c0",
+          "world": "mw-057",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-057-c1",
+          "world": "mw-057",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-057-c2",
+          "world": "mw-057",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-057-c3",
+          "world": "mw-057",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c4",
+          "world": "mw-057",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c0",
+          "world": "mw-058",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-058-c1",
+          "world": "mw-058",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-058-c2",
+          "world": "mw-058",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-058-c3",
+          "world": "mw-058",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c4",
+          "world": "mw-058",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c0",
+          "world": "mw-059",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-059-c1",
+          "world": "mw-059",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-059-c2",
+          "world": "mw-059",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-059-c3",
+          "world": "mw-059",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c4",
+          "world": "mw-059",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        }
+      ]
+    },
+    "Domain grouping": {
+      "summary": {
+        "mae": 2.2,
+        "f1": 0.2,
+        "fcr": 1.0
+      },
+      "rows": [
+        {
+          "case_id": "mw-048-c0",
+          "world": "mw-048",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c1",
+          "world": "mw-048",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c2",
+          "world": "mw-048",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c3",
+          "world": "mw-048",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-048-c4",
+          "world": "mw-048",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c0",
+          "world": "mw-049",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-049-c1",
+          "world": "mw-049",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-049-c2",
+          "world": "mw-049",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-049-c3",
+          "world": "mw-049",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c4",
+          "world": "mw-049",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c0",
+          "world": "mw-050",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-050-c1",
+          "world": "mw-050",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-050-c2",
+          "world": "mw-050",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-050-c3",
+          "world": "mw-050",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c4",
+          "world": "mw-050",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c0",
+          "world": "mw-051",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-051-c1",
+          "world": "mw-051",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-051-c2",
+          "world": "mw-051",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-051-c3",
+          "world": "mw-051",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c4",
+          "world": "mw-051",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c0",
+          "world": "mw-052",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c1",
+          "world": "mw-052",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c2",
+          "world": "mw-052",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c3",
+          "world": "mw-052",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c4",
+          "world": "mw-052",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c0",
+          "world": "mw-053",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c1",
+          "world": "mw-053",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c2",
+          "world": "mw-053",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c3",
+          "world": "mw-053",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c4",
+          "world": "mw-053",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c0",
+          "world": "mw-054",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-054-c1",
+          "world": "mw-054",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-054-c2",
+          "world": "mw-054",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-054-c3",
+          "world": "mw-054",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c4",
+          "world": "mw-054",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c0",
+          "world": "mw-055",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-055-c1",
+          "world": "mw-055",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-055-c2",
+          "world": "mw-055",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-055-c3",
+          "world": "mw-055",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c4",
+          "world": "mw-055",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c0",
+          "world": "mw-056",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c1",
+          "world": "mw-056",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c2",
+          "world": "mw-056",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c3",
+          "world": "mw-056",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c4",
+          "world": "mw-056",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c0",
+          "world": "mw-057",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-057-c1",
+          "world": "mw-057",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-057-c2",
+          "world": "mw-057",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-057-c3",
+          "world": "mw-057",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c4",
+          "world": "mw-057",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c0",
+          "world": "mw-058",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-058-c1",
+          "world": "mw-058",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-058-c2",
+          "world": "mw-058",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-058-c3",
+          "world": "mw-058",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c4",
+          "world": "mw-058",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c0",
+          "world": "mw-059",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-059-c1",
+          "world": "mw-059",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-059-c2",
+          "world": "mw-059",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-059-c3",
+          "world": "mw-059",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c4",
+          "world": "mw-059",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        }
+      ]
+    },
+    "Lexical grouping": {
+      "summary": {
+        "mae": 1.6666666666666667,
+        "f1": 0.3777777777777777,
+        "fcr": 0.7777777777777778
+      },
+      "rows": [
+        {
+          "case_id": "mw-048-c0",
+          "world": "mw-048",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 2,
+          "mae": 1,
+          "f1": 0.6666666666666666,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c1",
+          "world": "mw-048",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c2",
+          "world": "mw-048",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c3",
+          "world": "mw-048",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-048-c4",
+          "world": "mw-048",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c0",
+          "world": "mw-049",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c1",
+          "world": "mw-049",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-049-c2",
+          "world": "mw-049",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-049-c3",
+          "world": "mw-049",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c4",
+          "world": "mw-049",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c0",
+          "world": "mw-050",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c1",
+          "world": "mw-050",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-050-c2",
+          "world": "mw-050",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-050-c3",
+          "world": "mw-050",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c4",
+          "world": "mw-050",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c0",
+          "world": "mw-051",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c1",
+          "world": "mw-051",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-051-c2",
+          "world": "mw-051",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-051-c3",
+          "world": "mw-051",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c4",
+          "world": "mw-051",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c0",
+          "world": "mw-052",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 2,
+          "mae": 1,
+          "f1": 0.6666666666666666,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c1",
+          "world": "mw-052",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c2",
+          "world": "mw-052",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c3",
+          "world": "mw-052",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c4",
+          "world": "mw-052",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c0",
+          "world": "mw-053",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 2,
+          "mae": 1,
+          "f1": 0.6666666666666666,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c1",
+          "world": "mw-053",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c2",
+          "world": "mw-053",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c3",
+          "world": "mw-053",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c4",
+          "world": "mw-053",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c0",
+          "world": "mw-054",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c1",
+          "world": "mw-054",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-054-c2",
+          "world": "mw-054",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-054-c3",
+          "world": "mw-054",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c4",
+          "world": "mw-054",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c0",
+          "world": "mw-055",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c1",
+          "world": "mw-055",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-055-c2",
+          "world": "mw-055",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-055-c3",
+          "world": "mw-055",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c4",
+          "world": "mw-055",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c0",
+          "world": "mw-056",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 2,
+          "mae": 1,
+          "f1": 0.6666666666666666,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c1",
+          "world": "mw-056",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c2",
+          "world": "mw-056",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c3",
+          "world": "mw-056",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c4",
+          "world": "mw-056",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c0",
+          "world": "mw-057",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c1",
+          "world": "mw-057",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-057-c2",
+          "world": "mw-057",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-057-c3",
+          "world": "mw-057",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c4",
+          "world": "mw-057",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c0",
+          "world": "mw-058",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c1",
+          "world": "mw-058",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-058-c2",
+          "world": "mw-058",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-058-c3",
+          "world": "mw-058",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c4",
+          "world": "mw-058",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c0",
+          "world": "mw-059",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c1",
+          "world": "mw-059",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-059-c2",
+          "world": "mw-059",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-059-c3",
+          "world": "mw-059",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 4,
+          "mae": 2,
+          "f1": 0.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c4",
+          "world": "mw-059",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        }
+      ]
+    },
+    "EchoGraph": {
+      "summary": {
+        "mae": 0.7666666666666667,
+        "f1": 0.7095238095238094,
+        "fcr": 0.3333333333333333
+      },
+      "rows": [
+        {
+          "case_id": "mw-048-c0",
+          "world": "mw-048",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-048-c1",
+          "world": "mw-048",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-048-c2",
+          "world": "mw-048",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-048-c3",
+          "world": "mw-048",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-048-c4",
+          "world": "mw-048",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c0",
+          "world": "mw-049",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c1",
+          "world": "mw-049",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c2",
+          "world": "mw-049",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-049-c3",
+          "world": "mw-049",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-049-c4",
+          "world": "mw-049",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c0",
+          "world": "mw-050",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c1",
+          "world": "mw-050",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c2",
+          "world": "mw-050",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-050-c3",
+          "world": "mw-050",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-050-c4",
+          "world": "mw-050",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c0",
+          "world": "mw-051",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c1",
+          "world": "mw-051",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c2",
+          "world": "mw-051",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 3,
+          "mae": 2,
+          "f1": 0.2857142857142857,
+          "false": 1
+        },
+        {
+          "case_id": "mw-051-c3",
+          "world": "mw-051",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-051-c4",
+          "world": "mw-051",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c0",
+          "world": "mw-052",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c1",
+          "world": "mw-052",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c2",
+          "world": "mw-052",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-052-c3",
+          "world": "mw-052",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-052-c4",
+          "world": "mw-052",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c0",
+          "world": "mw-053",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c1",
+          "world": "mw-053",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c2",
+          "world": "mw-053",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-053-c3",
+          "world": "mw-053",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-053-c4",
+          "world": "mw-053",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c0",
+          "world": "mw-054",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c1",
+          "world": "mw-054",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c2",
+          "world": "mw-054",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-054-c3",
+          "world": "mw-054",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-054-c4",
+          "world": "mw-054",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c0",
+          "world": "mw-055",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c1",
+          "world": "mw-055",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c2",
+          "world": "mw-055",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-055-c3",
+          "world": "mw-055",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-055-c4",
+          "world": "mw-055",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c0",
+          "world": "mw-056",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c1",
+          "world": "mw-056",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c2",
+          "world": "mw-056",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-056-c3",
+          "world": "mw-056",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-056-c4",
+          "world": "mw-056",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c0",
+          "world": "mw-057",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c1",
+          "world": "mw-057",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c2",
+          "world": "mw-057",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-057-c3",
+          "world": "mw-057",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-057-c4",
+          "world": "mw-057",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c0",
+          "world": "mw-058",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c1",
+          "world": "mw-058",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c2",
+          "world": "mw-058",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 4,
+          "mae": 3,
+          "f1": 0.0,
+          "false": 1
+        },
+        {
+          "case_id": "mw-058-c3",
+          "world": "mw-058",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-058-c4",
+          "world": "mw-058",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c0",
+          "world": "mw-059",
+          "condition": "exact_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c1",
+          "world": "mw-059",
+          "condition": "paraphrase_echo",
+          "gold": 1,
+          "predicted": 1,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c2",
+          "world": "mw-059",
+          "condition": "cross_domain_echo",
+          "gold": 1,
+          "predicted": 3,
+          "mae": 2,
+          "f1": 0.2857142857142857,
+          "false": 1
+        },
+        {
+          "case_id": "mw-059-c3",
+          "world": "mw-059",
+          "condition": "two_roots",
+          "gold": 2,
+          "predicted": 1,
+          "mae": 1,
+          "f1": 0.5,
+          "false": 0
+        },
+        {
+          "case_id": "mw-059-c4",
+          "world": "mw-059",
+          "condition": "four_roots",
+          "gold": 4,
+          "predicted": 4,
+          "mae": 0,
+          "f1": 1.0,
+          "false": 0
+        }
+      ]
+    }
+  },
+  "threshold_grid": [
+    {
+      "threshold": 0.3,
+      "mae": 0.8,
+      "f1": 0.7,
+      "fcr": 0.0
+    },
+    {
+      "threshold": 0.35,
+      "mae": 0.8,
+      "f1": 0.7,
+      "fcr": 0.0
+    },
+    {
+      "threshold": 0.4,
+      "mae": 0.8,
+      "f1": 0.7,
+      "fcr": 0.0
+    },
+    {
+      "threshold": 0.45,
+      "mae": 0.8,
+      "f1": 0.7,
+      "fcr": 0.0
+    },
+    {
+      "threshold": 0.5,
+      "mae": 0.8,
+      "f1": 0.7,
+      "fcr": 0.0
+    },
+    {
+      "threshold": 0.55,
+      "mae": 0.35,
+      "f1": 0.75,
+      "fcr": 0.0
+    },
+    {
+      "threshold": 0.6,
+      "mae": 0.7666666666666667,
+      "f1": 0.7095238095238094,
+      "fcr": 0.3333333333333333
+    },
+    {
+      "threshold": 0.65,
+      "mae": 0.8,
+      "f1": 0.7,
+      "fcr": 0.3333333333333333
+    },
+    {
+      "threshold": 0.7,
+      "mae": 0.6,
+      "f1": 0.8,
+      "fcr": 0.3333333333333333
+    },
+    {
+      "threshold": 0.75,
+      "mae": 0.6,
+      "f1": 0.8,
+      "fcr": 0.3333333333333333
+    },
+    {
+      "threshold": 0.8,
+      "mae": 0.6,
+      "f1": 0.8,
+      "fcr": 0.3333333333333333
+    },
+    {
+      "threshold": 0.85,
+      "mae": 0.6,
+      "f1": 0.8,
+      "fcr": 0.3333333333333333
+    },
+    {
+      "threshold": 0.9,
+      "mae": 0.65,
+      "f1": 0.7833333333333333,
+      "fcr": 0.4166666666666667
+    }
+  ],
+  "delta_mae": {
+    "estimate": -1.4333333333333333,
+    "interval": [
+      -1.4833333333333334,
+      -1.4000000000000001
+    ]
+  },
+  "inventory": {
+    "cases": 400,
+    "worlds": 80,
+    "document_instances": 3200,
+    "verdicts": {
+      "supported": 400
+    },
+    "unique_domains_per_case": {
+      "8": 400
+    },
+    "review_status": {
+      "generated": 400
+    }
+  }
+}

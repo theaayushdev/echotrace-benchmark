@@ -1,0 +1,15 @@
+{
+  "public_data": "data/echobench_synthetic_v1_public.jsonl",
+  "gold_data": "data/echobench_synthetic_v1_gold.jsonl",
+  "manifest": "data/echobench_synthetic_v1_manifest.json",
+  "review_sample": "annotations/v1/review_sample.json",
+  "review_ledger": "annotations/v1/reviews.csv",
+  "freeze_manifest": "artifacts/freeze-v1.json",
+  "split": "test",
+  "model_id": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "REPLACE_WITH_HUGGING_FACE_COMMIT_HASH",
+  "methods": ["standard", "mmr", "embedding_dedup", "echograph"],
+  "tracks": ["naturalistic", "diagnostic"],
+  "threshold": 0.60,
+  "output_dir": "artifacts/runs/v1"
+}

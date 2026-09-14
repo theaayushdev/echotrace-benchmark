@@ -1,0 +1,157 @@
+{
+  "scope": "post-freeze training-only construction audit",
+  "by_condition": {
+    "single_origin": {
+      "edges": 450,
+      "source_after_derivative": 63
+    },
+    "verbatim_derivative": {
+      "edges": 450,
+      "source_after_derivative": 68
+    },
+    "attributed_paraphrase": {
+      "edges": 450,
+      "source_after_derivative": 77
+    },
+    "unattributed_multihop": {
+      "edges": 450,
+      "source_after_derivative": 137
+    },
+    "two_roots": {
+      "edges": 300,
+      "source_after_derivative": 161
+    },
+    "shared_study_replication": {
+      "edges": 150,
+      "source_after_derivative": 71
+    }
+  },
+  "edges": 2250,
+  "source_after_derivative": 577,
+  "examples": [
+    {
+      "case_id": "case_8bf11791503087da",
+      "reversed_edges": [
+        {
+          "source_id": "doc_8741862b27bf44cf",
+          "derivative_id": "doc_9597ff21f043e196",
+          "transformation": "attributed_restatement"
+        }
+      ]
+    },
+    {
+      "case_id": "case_5101a51e51e83b8a",
+      "reversed_edges": [
+        {
+          "source_id": "doc_9ef1d3e0735905d7",
+          "derivative_id": "doc_08c77c6de1b49646",
+          "transformation": "attributed_summary"
+        },
+        {
+          "source_id": "doc_60a895640cb22d40",
+          "derivative_id": "doc_7243484030a2a776",
+          "transformation": "attributed_summary"
+        }
+      ]
+    },
+    {
+      "case_id": "case_5c7519886328cee1",
+      "reversed_edges": [
+        {
+          "source_id": "doc_385ff811396bf273",
+          "derivative_id": "doc_ef6723b5336353fd",
+          "transformation": "study_summary"
+        }
+      ]
+    },
+    {
+      "case_id": "case_3a878392c2774f2f",
+      "reversed_edges": [
+        {
+          "source_id": "doc_f0960f2c783cecea",
+          "derivative_id": "doc_e9186f442b3cf0a1",
+          "transformation": "near_exact_reuse"
+        }
+      ]
+    },
+    {
+      "case_id": "case_0e9f6b69749cfec2",
+      "reversed_edges": [
+        {
+          "source_id": "doc_07b8cb6c5b1bd63c",
+          "derivative_id": "doc_63bac0e9ed63a4f7",
+          "transformation": "attributed_restatement"
+        }
+      ]
+    },
+    {
+      "case_id": "case_9a6818febd4c02ef",
+      "reversed_edges": [
+        {
+          "source_id": "doc_d970190e72c32ab2",
+          "derivative_id": "doc_76b01f69b8944f90",
+          "transformation": "uncredited_restatement"
+        }
+      ]
+    },
+    {
+      "case_id": "case_27a9f5e8db8248fa",
+      "reversed_edges": [
+        {
+          "source_id": "doc_fb49688acab9b2fb",
+          "derivative_id": "doc_dc61ff2d51d3cc06",
+          "transformation": "attributed_summary"
+        },
+        {
+          "source_id": "doc_7c39db5bbff95326",
+          "derivative_id": "doc_1ba85205e5d5d2b7",
+          "transformation": "attributed_summary"
+        }
+      ]
+    },
+    {
+      "case_id": "case_348198fc0fd24876",
+      "reversed_edges": [
+        {
+          "source_id": "doc_03ffc5913ae52d1a",
+          "derivative_id": "doc_8f17fdbadfe1dfd3",
+          "transformation": "attributed_summary"
+        }
+      ]
+    },
+    {
+      "case_id": "case_6bb200479880ec19",
+      "reversed_edges": [
+        {
+          "source_id": "doc_7141a4b5a6fbcd2e",
+          "derivative_id": "doc_7b91ef269580a632",
+          "transformation": "uncredited_restatement"
+        },
+        {
+          "source_id": "doc_f8b27ed4f36d108d",
+          "derivative_id": "doc_c543d0b120022f1d",
+          "transformation": "uncredited_restatement"
+        }
+      ]
+    },
+    {
+      "case_id": "case_6d87f5d0096eb3a6",
+      "reversed_edges": [
+        {
+          "source_id": "doc_f8c068bdf56cec91",
+          "derivative_id": "doc_58854976c431b38b",
+          "transformation": "attributed_summary"
+        },
+        {
+          "source_id": "doc_466139dacdd1672a",
+          "derivative_id": "doc_5d8773c7b00753ca",
+          "transformation": "attributed_summary"
+        }
+      ]
+    }
+  ],
+  "sha256": {
+    "data/echobench_synthetic_v1_public.jsonl": "179ccb3e6cf0a7cccacbfb0e8fd8c70512b9b688fe2bfa192c9f7427c3930936",
+    "data/echobench_synthetic_v1_gold.jsonl": "fc24c698dca25a5889e88354945eb5ff8b9ae2d2ebc15d5fa63de9257baae1a4"
+  }
+}

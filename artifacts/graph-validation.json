@@ -1,0 +1,10 @@
+{
+  "metrics": {
+    "edge_f1": 0.23484844189178553,
+    "family_pair_f1": 0.21664488017429193,
+    "root_count_mae": 0.7666666666666667
+  },
+  "n": 60,
+  "split": "validation",
+  "threshold": 0.6
+}

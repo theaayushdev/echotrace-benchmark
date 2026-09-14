@@ -1,0 +1,88 @@
+{
+  "scope": "exploratory; no confirmatory or human-validation claim",
+  "plan_sha256": "93d074bd276e45d3b1929d36bf0c01ade09e2b103b14ee6b59fe332fa65767e1",
+  "providers": {
+    "gemini": {
+      "model": "gemini-3.8-flash",
+      "planned": 36,
+      "attempted": 2,
+      "valid": 0,
+      "status_counts": {
+        "http_error": 2
+      },
+      "arms": {
+        "standard": {
+          "n_valid": 0,
+          "accuracy": null,
+          "brier": null
+        },
+        "instruction": {
+          "n_valid": 0,
+          "accuracy": null,
+          "brier": null
+        },
+        "echograph": {
+          "n_valid": 0,
+          "accuracy": null,
+          "brier": null
+        }
+      },
+      "complete_paired_cases": 0
+    },
+    "groq": {
+      "model": "qwen/qwen3.8-27b",
+      "planned": 36,
+      "attempted": 36,
+      "valid": 36,
+      "status_counts": {
+        "valid": 36
+      },
+      "arms": {
+        "standard": {
+          "n_valid": 12,
+          "accuracy": 0.9166666666666666,
+          "brier": 0.16708333333333333
+        },
+        "instruction": {
+          "n_valid": 12,
+          "accuracy": 0.75,
+          "brier": 0.48541666666666666
+        },
+        "echograph": {
+          "n_valid": 12,
+          "accuracy": 0.8333333333333334,
+          "brier": 0.3025
+        }
+      },
+      "complete_paired_cases": 12
+    },
+    "openrouter": {
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "planned": 36,
+      "attempted": 36,
+      "valid": 35,
+      "status_counts": {
+        "transport_or_provider_error": 1,
+        "valid": 35
+      },
+      "arms": {
+        "standard": {
+          "n_valid": 12,
+          "accuracy": 0.75,
+          "brier": 0.5
+        },
+        "instruction": {
+          "n_valid": 11,
+          "accuracy": 0.7272727272727273,
+          "brier": 0.5454545454545454
+        },
+        "echograph": {
+          "n_valid": 12,
+          "accuracy": 0.8333333333333334,
+          "brier": 0.3066666666666667
+        }
+      },
+      "complete_paired_cases": 11
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "gemini": {
+    "model": "gemini-3.8-flash",
+    "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    "key_env": "GEMINI_API_KEY",
+    "max_tokens": 2048,
+    "interval_seconds": 15,
+    "extra": {}
+  },
+  "groq": {
+    "model": "qwen/qwen3.8-27b",
+    "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+    "key_env": "GROQ_API_KEY",
+    "max_tokens": 2048,
+    "interval_seconds": 25,
+    "extra": {}
+  },
+  "openrouter": {
+    "model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "key_env": "OPENROUTER_API_KEY",
+    "max_tokens": 2048,
+    "interval_seconds": 5,
+    "extra": {"provider": {"allow_fallbacks": false}, "reasoning": {"effort": "low"}}
+  }
+}

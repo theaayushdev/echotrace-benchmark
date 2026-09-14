@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs,hyperref}
+\input{generated/llm-pilot-rows}
+\title{EchoTrace: Exploratory LLM Feasibility Report}
+\author{Ayush Dev\\Nepal Engineering College, Bhaktapur, Nepal}
+\date{September 2026}
+\begin{document}
+\maketitle
+\noindent\textbf{Status: development evidence only.} This report documents a training-only
+pilot and must not be presented as the completed confirmatory LLM extension.
+
+\section{Design}
+The pilot selects three training worlds, one per evidence verdict, and four provenance conditions
+per world: a single origin, four independent observations, a shared dataset, and ambiguous
+provenance. Each case is tested with ordinary instructions, a dependence reminder, and the same
+reminder plus EchoGraph's fallible proposed partition. Every arm receives the same four
+gold-relevant documents. The output schema asks for an answer, evidence verdict, three-class
+probabilities, and citations; the ordinary arm does not request source-family judgments.
+The detector was fitted on the existing training split, which includes these worlds.
+
+\section{Structured-output results}
+Table~\ref{tab:pilot} reports only schema-valid outputs, with explicit denominators. Brier score
+is the unhalved sum of squared errors over the three evidence-verdict probabilities.
+It is not a measure of factual-truth calibration or confidence warranted by independent evidence.
+The machine-readable logs and accompanying Markdown report retain all failed and invalid calls.
+Requested working models are \texttt{qwen/qwen3.8-27b} through Groq and
+\texttt{nvidia/nemotron-3-super-120b-a12b:free} through OpenRouter. Returned identifiers and
+timestamps are recorded in the logs; hosted aliases are not immutable weight snapshots.
+Gemini 3.8 Flash encountered service-availability errors; a documented alternative requests
+Gemini 3.7 Flash in a separate run. Neither is pooled with the other.
+
+\begin{table}[h]
+\centering
+\caption{Exploratory evidence-verdict outcomes. N counts schema-valid responses.}
+\label{tab:pilot}
+\begin{tabular}{llrrr}
+\toprule
+Model family & Arm & N & Accuracy & Brier\\
+\midrule
+\PilotRows
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{What this pilot cannot establish}
+Correctly identifying a directly stated result does not demonstrate source-family reasoning.
+A syntactically valid response may contain a placeholder, unsupported provenance claim, or
+poor explanation. Such problems require additional output-quality checks and human review.
+Only three worlds are present, and repeated arms are paired observations rather than independent
+samples. No inferential significance tests, real-source generalization claims, or mitigation
+effectiveness claims follow from this pilot.
+
+\section{Required follow-up}
+Separate provenance diagnostics and blinded human evaluation of corroboration assertions are
+needed. A confirmatory study must specify fresh held-out material, additional grouping and
+oracle controls, the number of worlds needed to detect a meaningful effect, and missing-output
+handling before collection. Human annotations and the prepared real-source pilot remain pending.
+An additional training-only audit found 577 of 2,250 synthetic lineage edges with reversed
+publication chronology. A small development sample now repairs timestamps, but a complete
+corrected benchmark and fresh evaluation are needed before submission.
+\end{document}

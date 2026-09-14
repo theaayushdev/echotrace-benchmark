@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+\IfFileExists{acl.sty}{\usepackage[review]{acl}}{%
+  \usepackage[margin=1in]{geometry}
+  \usepackage[numbers]{natbib}
+}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage{xcolor}
+
+\title{EchoTrace: Benchmarking False Corroboration from Source Dependence in Deep Research Agents}
+\author{Anonymous authors}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\textbf{Draft status:} generated benchmark; human verification and model experiments pending.}}
+\end{center}
+
+\begin{abstract}
+Deep research agents retrieve many web pages and present citation-rich reports, but the number of
+citations is not the number of independent observations. Several domains may repeat one upstream
+report, creating false corroboration. We introduce EchoBench, a controlled benchmark in which the
+number and transformation of source origins are known, and EchoGraph, an interpretable method for
+inferring document dependence and selecting marginally independent evidence. EchoBench contains
+400 generated cases organized as matched conditions over 80 fictional micro-worlds. This draft
+defines the task, benchmark, system, preregistered evaluation, and live-web audit. Quantitative model
+results are intentionally omitted until human verification and frozen experiments are complete.
+\end{abstract}
+
+\section{Introduction}
+Research agents can search, browse, synthesize, and cite far more material than a person can inspect
+quickly. Existing evaluations measure whether citations resolve, are relevant, or support nearby
+claims \citep{gao2023alce,onweller2026cited}. These properties are necessary, but they do not reveal
+whether apparently separate sources are informationally independent.
+
+This distinction matters because citation networks can amplify a claim without adding new evidence.
+Greenberg's claim-specific network analysis documented how citation bias, amplification, and
+invention produced unfounded authority \citep{greenberg2009citation}. Modern research agents may
+compress this same structure into a short report and unintentionally present repetition as consensus.
+
+EchoTrace studies the resulting failure mode under controlled counterfactuals. Each EchoBench
+micro-world holds a claim and the number of apparently supporting documents constant while varying
+whether those documents descend from one, two, or four roots. This design separates source count
+from source independence.
+
+Our intended contributions are: (1) a reproducible benchmark for source-dependence reasoning,
+(2) metrics for false corroboration and confidence inflation, (3) EchoGraph, an interpretable
+independence-aware retrieval method, and (4) a manually traced live-web audit. Contributions that
+depend on experiments will be stated only after the locked evaluation.
+
+\section{Related Work}
+\paragraph{Citation evaluation.}
+ALCE evaluates fluency, correctness, and citation quality in attributed generation
+\citep{gao2023alce}. Recent work retrieves cited content and evaluates link validity, relevance, and
+factual support \citep{onweller2026cited}. ForceBench instead asks whether a passage warrants the
+strength of an attached claim \citep{qian2026force}. EchoBench is complementary: every supporting
+page may entail the claim while several pages still constitute only one evidential origin.
+
+\paragraph{Deep research benchmarks.}
+DeepResearch Bench evaluates long-form reports and effective citations \citep{du2025deepresearch}.
+DeepWeb-Bench emphasizes massive retrieval, cross-source reconciliation, derivation, and calibration
+\citep{xie2026deepweb}. Neither uses matched cases that manipulate the hidden dependence among
+apparently corroborating documents.
+
+\paragraph{Evidence graphs and source dependence.}
+LineageRAG creates a lineage between query-derived evidence demands and grounded passages
+\citep{zheng2026lineagerag}; its lineage is a reasoning and retrieval structure, not an estimate of
+which publishers copied which upstream observation. EchoGraph uses ``source-dependence graph'' to
+avoid conflating these concepts.
+
+\section{Task Definition}
+Let $D=\{d_1,\ldots,d_n\}$ be documents retrieved for a claim $c$. A directed edge
+$d_i\rightarrow d_j$ denotes that $d_j$ depends on information transmitted by $d_i$. The resulting
+graph partitions supporting documents into evidence families $F=\{F_1,\ldots,F_k\}$. The effective
+root count $k$ is distinct from the number of URLs, publishers, or supporting passages.
+
+An agent receives a query and document-search tools. It returns an answer, citations, confidence,
+and predicted evidence groups. We evaluate both a naturalistic track, which does not foreground
+dependence, and a diagnostic track that explicitly requests an independence audit.
+
+\section{EchoBench}
+EchoBench contains 80 fictional micro-worlds across eight topic domains. Fictional entity names and
+future-dated events reduce reliance on memorized facts. Every world creates five matched conditions:
+near-verbatim echoes, paraphrased echoes, cross-domain echoes with removed attribution, two roots
+with derivatives, and four independent roots. Each case contains four supporting documents, two
+conflicting documents, and two distractors.
+
+The split contains 240 training, 60 validation, and 100 test cases, with all conditions from a world
+kept in one split. Two authors must independently verify every case, and a supervisor adjudicates
+disagreements. The present generated release is not yet described as human-verified.
+
+\section{EchoGraph}
+EchoGraph scores ordered document pairs using explicit links, named attribution, publication
+chronology, token and five-gram overlap, bag-of-words cosine similarity, shared numbers, and domain
+identity. A regularized logistic classifier estimates pairwise dependence. Thresholded edges form
+evidence families, and the earliest member of each family is treated as its provisional root.
+
+The reranker maximizes query relevance while initially admitting one document from each inferred
+family. A compact manifest tells the generator which documents may share an origin and where the
+graph is uncertain. This training-free generation intervention leaves the underlying language model
+unchanged.
+
+\section{Experimental Setup}
+The frozen evaluation will include stable models from three commercial providers and three hosted
+open-weight families. We compare standard relevance retrieval, domain deduplication, semantic
+deduplication, maximal marginal relevance, EchoGraph, and a gold-graph upper bound. Model IDs,
+prompts, thresholds, hashes, and prices will be frozen before test execution.
+
+Primary metrics are root-count mean absolute error and false corroboration rate. Secondary metrics
+include independence discrimination, cross-domain echo-disguise inflation, dependency and family F1, evidence-family
+recall, verdict accuracy, citation support, latency, and cost. We will report paired bootstrap
+confidence intervals over micro-worlds, mixed-effects analyses, and Holm-corrected secondary tests.
+
+\section{Results}
+\input{generated/results}
+
+No numerical conclusion is drawn in this draft. EchoGraph will receive a positive mitigation claim
+only if the preregistered primary outcome improves with a 95\% interval excluding zero while answer
+utility decreases by no more than two percentage points. Null results will be reported without
+changing the hypotheses or primary metrics.
+
+\section{Live-Web Audit}
+The external-validity audit will trace 30 source clusters: ten in science communication, ten in
+public-policy or news reporting, and ten in product or technology reporting. The release will contain
+URLs, access dates, timestamps, hashes, relationship labels, permitted excerpts, and collection code,
+but will not republish copyrighted articles.
+
+\section{Limitations and Ethics}
+EchoBench is English-only, generated, unusually clean, and more explicit about dates and links than
+the open web. Dependence does not imply that a derivative source is wrong, and independence does not
+guarantee correctness. EchoGraph therefore estimates evidential diversity rather than source truth or
+publisher quality. No external human-subject study is planned. Public-web collection will respect
+licenses and avoid redistribution of copyrighted full text.
+
+\section{Conclusion}
+EchoTrace separates the appearance of corroboration from independent evidential support. The
+released implementation makes the benchmark, dependency inference, experiment traces, and paper
+artifacts reproducible. The final conclusion awaits verified data and frozen model experiments.
+
+\IfFileExists{acl_natbib.bst}{\bibliographystyle{acl_natbib}}{\bibliographystyle{plainnat}}
+\bibliography{references}
+\end{document}

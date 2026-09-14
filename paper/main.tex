@@ -1,0 +1,360 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,booktabs,array,microtype,cite,url,balance}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\ind}{\mathbf{1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\hypersetup{pdftitle={EchoTrace: A Controlled Benchmark and Simulation Study of Source-Family Dependence},pdfauthor={Ayush Dev}}
+\title{EchoTrace: A Controlled Benchmark and Simulation Study of Source-Family Dependence}
+\author{\IEEEauthorblockN{Ayush Dev}
+\IEEEauthorblockA{Nepal Engineering College\\Bhaktapur, Nepal}}
+\input{generated/v1-results}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Several documents can support the same claim while ultimately relying on one observation. Counting
+such documents as independent corroboration can overstate evidential strength even when every
+individual citation is relevant. We introduce EchoBench-Synthetic v1.1, a gold-by-construction
+benchmark for source-family inference. It contains 2,640 cases from 240 world-disjoint fictional
+micro-worlds crossed with 11 provenance conditions and three balanced verdicts. We compare
+document-, domain-, lexical-, TF--IDF-, and sentence-embedding-based grouping with EchoGraph, an
+interpretable logistic pair classifier using links, attribution, text overlap, numbers, domains, and
+chronology. Thresholds are fixed on 30 validation worlds and evaluated once on 60 held-out worlds.
+On the 600 determinate test cases, EchoGraph obtains family-pair F1 of \EchoFOne\ and root-count MAE
+of \EchoMAE, compared with F1 \UrlFOne\ and MAE \UrlMAE\ for treating URLs as independent. A
+prespecified Bayesian sensitivity analysis shows mean probability error of \SimEchoProbErr\ for
+EchoGraph-derived counts versus \DocProbErr\ for document counts. Ablations reveal that links help,
+while removing numeric overlap unexpectedly improves aggregate pair F1 to \NoNumFOne. The study is
+CPU-reproducible and makes no claim of human validation, open-web provenance recovery, or improved
+end-to-end language-model answers.
+\end{abstract}
+
+\begin{IEEEkeywords}
+source dependence, evidence provenance, false corroboration, retrieval-augmented generation,
+benchmarking
+\end{IEEEkeywords}
+
+\section{Introduction}
+A research system may cite four pages and describe a conclusion as repeatedly confirmed. If three
+pages summarize the first, the answer contains four documents but one informational origin. This is
+\emph{false corroboration}: apparent support is increased by counting dependent reports as though
+they were independent observations. Citation entailment alone does not expose the problem because
+each page can genuinely contain the claim.
+
+Source dependence has long mattered in data integration \cite{dong2009dependence}, and citation
+networks can amplify claims through repeated references \cite{greenberg2009citation}. Modern
+citation and research benchmarks measure answer correctness, citation entailment, evidential force,
+and long-horizon synthesis \cite{gao2023alce,du2025deepresearch,qian2026force}. These are necessary
+properties, but they do not directly measure how many distinct observations a set of supporting
+documents represents. Recent work on source sensitivity in multi-source medical RAG further shows
+that source choice can change answers \cite{li2026transplantqa}. EchoTrace targets the narrower
+controlled problem of recovering dependence structure among already identified evidence documents.
+
+Evaluating this problem on the open web is difficult: true transmission paths are often missing,
+shared datasets may be invisible, and similar wording is not proof of copying. We therefore begin
+with a synthetic benchmark in which provenance is known by construction. The benchmark varies
+lineage, attribution, wording, domain, shared datasets, and independent replication while holding
+the focal task format fixed. It also includes ambiguous cases where the correct action is to
+abstain, although our determinate partition metrics exclude them because no unique family count is
+defined.
+
+This paper contributes:
+\begin{itemize}
+  \item EchoBench-Synthetic v1.1, with 2,640 public/gold-separated cases, balanced verdicts, opaque
+  identifiers, and world-disjoint train/validation/test splits;
+  \item a CPU-feasible comparison of source-family baselines and EchoGraph, including six feature
+  ablations and whole-world bootstrap intervals; and
+  \item an explicit Bayesian sensitivity analysis quantifying the confidence error induced by
+  document counting under stated priors and likelihood ratios.
+\end{itemize}
+The contribution is a controlled component study. It does not establish real-world provenance,
+publisher reliability, plagiarism, factual truth, or improved generated answers.
+
+\section{Related Work}
+\paragraph{Citation and research-agent evaluation.}
+ALCE evaluates correctness, fluency, citation recall, and citation precision in attributed answers
+\cite{gao2023alce}. Deep-research benchmarks extend evaluation to long reports and cross-source
+reasoning \cite{du2025deepresearch,xie2026deepweb}, while evidence-force evaluation distinguishes
+mere relevance from whether evidence warrants a claim's strength \cite{qian2026force}. Audits of
+deep-research citations also show that a displayed citation need not provide verified attribution
+\cite{onweller2026cited}. EchoTrace adds a different axis: relationships \emph{between} supporting
+sources.
+
+\paragraph{Dependence and diversity.}
+Source-dependence models for conflicting-data integration infer copying relationships to avoid
+double-counting repeated values \cite{dong2009dependence}. MMR reduces redundancy by balancing
+relevance and novelty \cite{goldstein1998mmr}, but semantic diversity is not evidential
+independence: independent studies may use similar language, while derivatives may paraphrase.
+LineageRAG organizes evidence and reasoning provenance \cite{zheng2026lineagerag}; EchoTrace instead
+predicts equivalence classes of documents that share an underlying informational origin.
+
+\paragraph{Repeated evidence in agent systems.}
+Bara \cite{bara2026sybil} studies evidence ancestry and report multiplicity using a formal
+aggregation model and controlled language-model extractions. That work also separates wording
+similarity from ancestry. EchoTrace's narrower contribution is a document-family inference
+benchmark with visible links, attribution, and shared-dataset cues. Its simulation is not the
+first demonstration that dependent reports can distort confidence, and its detector requires
+observable signals rather than recovering arbitrary hidden ancestry.
+
+\section{Task Definition}
+For a focal claim $c$, let $\D_c=\{d_1,\ldots,d_n\}$ be its relevant evidence documents. In a
+determinate case, a latent mapping $z(d)$ assigns each document to one source family. The target
+partition is
+\begin{equation}
+  \F_c=\{F_k\}_{k=1}^{K},\quad F_k=\{d\in\D_c:z(d)=k\},
+\end{equation}
+where $K$ is the number of informational origins, not the number of URLs or publishers. A method
+returns $\widehat\F_c$ and $\widehat K$.
+
+We report root-count mean absolute error
+\begin{equation}
+ \mathrm{MAE}_K=\frac{1}{N}\sum_{i=1}^{N}|\widehat K_i-K_i|
+\end{equation}
+and exclusive-family pair F1. The latter converts a partition into the set of unordered document
+pairs assigned to the same family, computes precision and recall against gold pairs, and assigns
+one when both sets are empty. Because this convention rewards correct all-singleton predictions,
+we also report each condition separately.
+
+Source-family dependence is not truth or reliability. Two independent studies can share bias; a
+derivative report can accurately summarize excellent evidence. EchoTrace only asks whether
+documents rely on the same underlying report, study, dataset, sample, or observation.
+
+\section{EchoBench-Synthetic v1.1}
+\subsection{Construction}
+EchoBench contains 240 fictional micro-worlds. Each world instantiates one of 12 topic templates,
+one focal quantitative claim, and all 11 provenance conditions in Table~\ref{tab:conditions}.
+Every case contains 12 shuffled documents: four claim-relevant documents and eight neutral
+distractors. The relevant documents express evidence consistent with one of three verdicts:
+supported, contradicted, or insufficient. Each verdict occurs 880 times and is balanced within
+every split.
+
+\begin{table}[t]
+\caption{EchoBench conditions. $K$ is defined only for determinate cases.}
+\label{tab:conditions}
+\centering\small
+\begin{tabular}{@{}lcl@{}}
+\toprule
+Condition & $K$ & Intended distinction\\
+\midrule
+Single origin & 1 & root with three derivatives\\
+Four independent & 4 & four separate samples\\
+Verbatim derivative & 1 & near-exact reuse\\
+Attributed paraphrase & 1 & visible source links\\
+Unattributed multihop & 1 & derivative chain, no links\\
+Two roots & 2 & two root--summary pairs\\
+Same wording independent & 4 & wording without dependence\\
+Same domain independent & 4 & publisher without dependence\\
+Shared dataset & 3 & two analyses reuse one dataset\\
+Study and replications & 3 & summary plus two replications\\
+Ambiguous provenance & -- & unknown; abstain\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Documents use reserved \code{.example} domains and opaque random identifiers. Public JSONL contains
+only queries and documents. Evaluator-only JSONL contains relevance, verdict, pair relationships,
+lineage edges, families, conditions, worlds, and splits. The generator seed is 20260911. Complete
+worlds are assigned to train, validation, or test (150/30/60 worlds), preventing a world's matched
+conditions from crossing splits.
+
+Gold labels are deterministic consequences of the generator, not human judgments. Structural
+validation checks counts, unique opaque IDs, verdict balance, public/gold separation, relevant
+pairs, and split isolation. A nearest-centroid probe using mean year, unique-domain count, URL path
+shape, and identifier length predicts the 11 hidden conditions with accuracy 0.182 (chance and
+majority baseline 0.091), below the prespecified failure threshold 0.55. This limited probe does not
+show that all template shortcuts are absent.
+
+\subsection{Evaluation scope}
+The component experiment supplies the four gold-relevant documents to every method. This isolates
+family inference from retrieval and verdict classification. Ambiguous cases are excluded, leaving
+1,500 training, 300 validation, and \TestCases\ test cases. Thresholds are selected on validation
+by minimizing root-count MAE, breaking ties by pair F1 and then proximity to 0.5. No test metric was
+computed before the protocol, data, code, model revision, and thresholds were SHA-256 frozen.
+
+\section{Methods}
+\paragraph{Baselines.}
+URL counting assigns every document to a singleton; all-one assigns one family. Domain grouping
+uses exact domains. Bag-of-words and within-case TF--IDF methods join pairs above a cosine threshold
+and return connected components. The semantic baseline uses normalized embeddings from
+\code{all-MiniLM-L6-v2}, pinned to commit \code{1110a243fdf4} (the full 40-character revision is
+stored in the freeze manifest). Validation thresholds are 0.50 for bag-of-words and MiniLM and 0.95
+for TF--IDF.
+
+\paragraph{EchoGraph.}
+For each time-ordered document pair, EchoGraph computes direct-link presence, attribution cues,
+token Jaccard, five-gram Jaccard, bag-of-words cosine, numeric overlap, same-domain status, and
+clipped time separation, plus an intercept. A logistic classifier is trained on the six pairs from
+each determinate training case with the target $\ind[z(d_i)=z(d_j)]$. Training uses full-batch
+gradient descent, $\ell_2$ regularization, and no language-model calls. At inference, pairs above the
+validation-selected threshold 0.50 are joined; connected components define families. Ablations
+retrain after zeroing links, attribution, lexical features, numbers, chronology, or domain.
+
+\section{Confidence-Inflation Simulation}
+The second experiment translates family-count errors into an interpretable consequence. Let prior
+probability be $p_0$, prior odds $O_0=p_0/(1-p_0)$, and $L$ the likelihood ratio contributed by one
+independent family. For verdict $v$ and count $k$,
+\begin{equation}
+ p(H\mid v,k)=\frac{O_0 L^{s(v)k}}{1+O_0 L^{s(v)k}},
+\end{equation}
+where $s(v)=1$ for supported, $-1$ for contradicted, and 0 for insufficient. The oracle uses gold
+$K$; each method substitutes $\widehat K$. We cross priors
+$\{0.10,0.25,0.50,0.75,0.90\}$ with likelihood ratios $\{1.5,2,3,5\}$. These values are a
+sensitivity grid, not estimated real-world parameters.
+
+Outcomes are absolute probability error relative to the oracle and absolute log-odds error,
+$|s(v)(\widehat K-K)\log L|$. Insufficient cases have $L^0=1$ and therefore zero error. For every
+metric, we average within a micro-world and resample the \TestWorlds\ complete test worlds 10,000
+times to obtain percentile 95\% intervals. Paired method contrasts use the same world-level unit.
+
+\section{Results}
+\subsection{Family inference}
+\begin{table}[t]
+\caption{Held-out determinate test results. Intervals are 10,000-replicate whole-world bootstrap
+95\% intervals. Baseline rows are deterministic across the balanced templates, so their intervals
+collapse. Higher F1 and lower MAE are better.}
+\label{tab:detection}
+\centering\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Method & Pair F1 & Root MAE\\
+\midrule
+URL singletons & \UrlFOne & \UrlMAE\\
+All one family & \OneFOne & \OneMAE\\
+Domain & \DomainFOne & \DomainMAE\\
+Bag of words & \BowFOne & \BowMAE\\
+TF--IDF & \TfidfFOne & \TfidfMAE\\
+MiniLM & \MinilmFOne & \MinilmMAE\\
+\textbf{EchoGraph} & \textbf{\EchoFOne} \EchoFOneCI & \textbf{\EchoMAE} \EchoMAECI\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+EchoGraph achieves pair F1 \EchoFOne\ and root MAE \EchoMAE\ (Table~\ref{tab:detection}). Its paired
+F1 improvement over URL counting is 0.434 [0.404, 0.462], and its MAE difference is $-1.145$
+[$-1.218,-1.067$]. Against the stronger TF--IDF baseline, the paired differences are 0.267
+[0.237, 0.295] F1 and $-0.645$ [$-0.718,-0.567$] MAE. Intervals for all five prespecified
+EchoGraph--baseline comparisons exclude zero in the favorable direction.
+
+Aggregate performance hides clear failures. EchoGraph reaches F1 1.0 on attributed paraphrases,
+four independent sources, same-domain independence, and same-wording independence, but F1 is 0.0
+on shared datasets. It obtains 0.517 on study/replication cases, 0.556 on two-root cases, and 0.667
+on both verbatim and unattributed multihop derivatives. Thus the model handles several surface
+counterexamples but does not consistently identify non-textual common dependencies.
+
+\subsection{Ablations}
+\begin{table}[t]
+\caption{Held-out EchoGraph feature ablations. Each variant is retrained and uses its frozen
+validation-selected threshold.}
+\label{tab:ablations}
+\centering\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Variant & Pair F1 & Root MAE\\
+\midrule
+Classic & \EchoFOne & \EchoMAE\\
+No links & \NoLinksFOne & \NoLinksMAE\\
+No attribution & \NoAttrFOne & \NoAttrMAE\\
+No lexical & \NoLexFOne & \NoLexMAE\\
+No numeric & \textbf{\NoNumFOne} & \textbf{\NoNumMAE}\\
+No chronology & \NoChronFOne & \NoChronMAE\\
+No domain & \NoDomainFOne & \NoDomainMAE\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Removing links reduces F1 from \EchoFOne\ to \NoLinksFOne\ and increases MAE to \NoLinksMAE,
+showing that explicit linkage is useful on this construction. Removing attribution has a small
+effect. Removing lexical, chronology, or domain features produces the same aggregate result as the
+classic model, indicating that their learned contribution does not change frozen test partitions.
+Unexpectedly, removing numeric overlap improves F1 to \NoNumFOne\ and slightly lowers MAE to
+\NoNumMAE. Shared numerical findings across dependent and independent documents are one possible
+explanation, but the aggregate ablation does not isolate that mechanism. This post-test finding
+motivates a future comparison on fresh data; it does not justify selecting the best ablation on
+this test set and reporting it as a newly confirmed model.
+
+\subsection{Confidence sensitivity}
+\begin{table}[t]
+\caption{Held-out simulation error averaged over the prior/LR grid and test worlds. Lower is better.}
+\label{tab:simulation}
+\centering\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Count estimator & Probability error & Log-odds error\\
+\midrule
+Documents & \DocProbErr & \DocLogErr\\
+TF--IDF families & \SimTfidfProbErr & \SimTfidfLogErr\\
+MiniLM families & \SimMinilmProbErr & \SimMinilmLogErr\\
+EchoGraph families & \textbf{\SimEchoProbErr} & \textbf{\SimEchoLogErr}\\
+Oracle families & 0.000 & 0.000\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Document counting has mean probability error \DocProbErr, compared with \SimEchoProbErr\ for
+EchoGraph (Table~\ref{tab:simulation}). The paired EchoGraph-minus-document difference is
+\EchoDocProbDelta\ \EchoDocProbDeltaCI; negative values favor EchoGraph. Its interval excludes zero.
+This supports the prespecified hypothesis \emph{within the simulation}: EchoGraph counts reduce
+posterior error relative to counting URLs. Absolute error penalizes both overcounting and
+undercounting; it is not a one-sided measure of overconfidence. These results do not establish
+that human or model confidence follows the assumed Bayesian update.
+
+\section{Limitations and Responsible Use}
+The principal limitation is synthetic construct validity. Text is templated, structures are finite,
+and labels follow generator rules. Repeated patterns can make held-out worlds easier than unfamiliar
+real prose, while hidden lineage may sometimes be underdetermined from visible documents. The
+metadata probe covers only four coarse features. No human quality audit was completed, and the
+prepared real-source ledger contains no observations; consequently, this paper makes no claim of
+human validation or open-web generalization.
+
+A post-freeze construction audit of training data found 577 of 2,250 lineage edges with a
+source publication timestamp later than its derivative. This inconsistency can affect both
+chronology features and the direction used to detect links. The frozen results are retained as
+measured, but chronological realism and mechanism claims require a corrected release and fresh
+evaluation. A chronology-valid v1.2 candidate was subsequently generated, but it inherited the
+same prose templates and is not evaluated here. A diagnostic AI review of that candidate also
+found that exact wording alone did not justify a same-origin label and that its purported
+unattributed multihop lineage was not observable from public text. A separate v1.3 candidate
+makes republication links visible and changes unattributed repeated reports to an abstention
+target. Neither candidate has completed blinded human review, a frozen protocol, or held-out
+evaluation; neither contributes any result to this paper.
+
+The experiment assumes gold relevance and therefore does not evaluate retrieval, distractor
+rejection, answer generation, citation entailment, or calibration of an actual research assistant.
+MiniLM's all-one-like result reflects this benchmark and thresholding procedure, not a broad verdict
+about sentence embeddings. Connected components also force non-overlapping families, whereas a
+real article may combine several studies or datasets. Claim- and span-level overlapping provenance
+will require a richer representation.
+
+Finally, dependence must not be used as a proxy for truth, quality, or misconduct. Similar language
+alone cannot establish copying, and a shared family can still be reliable. EchoTrace should not be
+used to accuse authors or rank publishers. Any real-source extension should preserve uncertainty,
+respect access and copyright restrictions, and obtain independent review where feasible.
+
+\section{Reproducibility}
+The repository includes the deterministic generator, public/gold data separation, validators,
+validation-selected thresholds, exact MiniLM revision, CPU evaluation scripts, raw JSON reports,
+and a freeze manifest containing SHA-256 hashes of 13 study files. The manifest records both
+one-shot test runs as complete. All numerical values in this paper are generated directly from the
+frozen JSON artifacts. The experiments require Python, NumPy, CPU PyTorch, and
+sentence-transformers; no CUDA GPU or paid API is required.
+
+\section{Conclusion}
+EchoBench-Synthetic v1.1 provides a controlled test of whether multiple supporting documents
+represent distinct informational origins. On its held-out synthetic cases, EchoGraph substantially
+outperforms URL, domain, lexical, TF--IDF, and MiniLM grouping baselines, and its family counts reduce
+error in a prespecified Bayesian confidence simulation. The results also expose important failures:
+shared-dataset structure remains difficult, numeric overlap is counterproductive, and synthetic
+success cannot establish real provenance reasoning. The next evidential step is not to pool
+candidate-release results with these findings, but to complete blinded human review, freeze a
+corrected protocol and test set, and evaluate an end-to-end research-assistant setting. The
+appropriate conclusion is therefore narrow: source-family structure is measurable and consequential
+under controlled assumptions, but real-world and end-to-end validation remain open work.
+
+\balance
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\end{document}
