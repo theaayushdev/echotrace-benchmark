@@ -1,0 +1,823 @@
+{
+  "benchmark_version": "1.1",
+  "echograph_classic_vs_baselines": {
+    "domain_grouping": {
+      "exclusive_family_pair_f1": {
+        "candidate_minus_reference": 0.5338888888888889,
+        "ci_high": 0.5619444444444445,
+        "ci_low": 0.5038888888888889,
+        "paired_unit": "micro_world"
+      },
+      "root_count_mae": {
+        "candidate_minus_reference": -1.445,
+        "ci_high": -1.3666666666666665,
+        "ci_low": -1.5183750000000003,
+        "paired_unit": "micro_world"
+      }
+    },
+    "lexical_bow": {
+      "exclusive_family_pair_f1": {
+        "candidate_minus_reference": 0.2267460317460318,
+        "ci_high": 0.25480158730158736,
+        "ci_low": 0.19674603174603178,
+        "paired_unit": "micro_world"
+      },
+      "root_count_mae": {
+        "candidate_minus_reference": -0.945,
+        "ci_high": -0.8666666666666667,
+        "ci_low": -1.0183750000000003,
+        "paired_unit": "micro_world"
+      }
+    },
+    "minilm": {
+      "exclusive_family_pair_f1": {
+        "candidate_minus_reference": 0.2267460317460318,
+        "ci_high": 0.25480158730158736,
+        "ci_low": 0.19674603174603178,
+        "paired_unit": "micro_world"
+      },
+      "root_count_mae": {
+        "candidate_minus_reference": -0.945,
+        "ci_high": -0.8666666666666667,
+        "ci_low": -1.0183750000000003,
+        "paired_unit": "micro_world"
+      }
+    },
+    "tfidf": {
+      "exclusive_family_pair_f1": {
+        "candidate_minus_reference": 0.26722222222222225,
+        "ci_high": 0.2952777777777778,
+        "ci_low": 0.23722222222222225,
+        "paired_unit": "micro_world"
+      },
+      "root_count_mae": {
+        "candidate_minus_reference": -0.645,
+        "ci_high": -0.5666666666666667,
+        "ci_low": -0.7183750000000001,
+        "paired_unit": "micro_world"
+      }
+    },
+    "url_count": {
+      "exclusive_family_pair_f1": {
+        "candidate_minus_reference": 0.43388888888888894,
+        "ci_high": 0.46194444444444455,
+        "ci_low": 0.4038888888888889,
+        "paired_unit": "micro_world"
+      },
+      "root_count_mae": {
+        "candidate_minus_reference": -1.1450000000000002,
+        "ci_high": -1.0666666666666667,
+        "ci_low": -1.2183750000000004,
+        "paired_unit": "micro_world"
+      }
+    }
+  },
+  "methods": {
+    "all_one_family": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "four_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "same_domain_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "same_wording_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "shared_dataset": {
+          "f1": 0.2857142857142856,
+          "mae": 2.0
+        },
+        "shared_study_replication": {
+          "f1": 0.2857142857142856,
+          "mae": 2.0
+        },
+        "single_origin": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "two_roots": {
+          "f1": 0.5,
+          "mae": 1.0
+        },
+        "unattributed_multihop": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "verbatim_derivative": {
+          "f1": 1.0,
+          "mae": 0.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.507142857142857,
+        "ci_low": 0.507142857142857,
+        "mean": 0.507142857142857,
+        "median": 0.5071428571428571
+      },
+      "root_count_mae": {
+        "ci_high": 1.4000000000000006,
+        "ci_low": 1.4000000000000006,
+        "mean": 1.4000000000000006,
+        "median": 1.4
+      }
+    },
+    "domain_grouping": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "four_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_domain_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "same_wording_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "shared_dataset": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "shared_study_replication": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "single_origin": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "two_roots": {
+          "f1": 0.0,
+          "mae": 2.0
+        },
+        "unattributed_multihop": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "verbatim_derivative": {
+          "f1": 0.0,
+          "mae": 3.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.19999999999999993,
+        "ci_low": 0.19999999999999993,
+        "mean": 0.19999999999999993,
+        "median": 0.2
+      },
+      "root_count_mae": {
+        "ci_high": 1.9000000000000006,
+        "ci_low": 1.9000000000000006,
+        "mean": 1.9000000000000006,
+        "median": 1.9
+      }
+    },
+    "echograph_classic": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "four_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_domain_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_wording_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "shared_dataset": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "shared_study_replication": {
+          "f1": 0.5166666666666667,
+          "mae": 0.48333333333333334
+        },
+        "single_origin": {
+          "f1": 0.9333333333333333,
+          "mae": 0.13333333333333333
+        },
+        "two_roots": {
+          "f1": 0.5555555555555556,
+          "mae": 0.9333333333333333
+        },
+        "unattributed_multihop": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        },
+        "verbatim_derivative": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.7619444444444444,
+        "ci_low": 0.703888888888889,
+        "mean": 0.7338888888888891,
+        "median": 0.75
+      },
+      "root_count_mae": {
+        "ci_high": 0.535,
+        "ci_low": 0.37833333333333335,
+        "mean": 0.45499999999999996,
+        "median": 0.3
+      }
+    },
+    "echograph_no_attribution": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 0.9666666666666667,
+          "mae": 0.1
+        },
+        "four_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_domain_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_wording_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "shared_dataset": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "shared_study_replication": {
+          "f1": 0.5166666666666667,
+          "mae": 0.48333333333333334
+        },
+        "single_origin": {
+          "f1": 0.9333333333333333,
+          "mae": 0.13333333333333333
+        },
+        "two_roots": {
+          "f1": 0.5555555555555556,
+          "mae": 0.9333333333333333
+        },
+        "unattributed_multihop": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        },
+        "verbatim_derivative": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.76,
+        "ci_low": 0.6991666666666668,
+        "mean": 0.7305555555555557,
+        "median": 0.75
+      },
+      "root_count_mae": {
+        "ci_high": 0.5499999999999997,
+        "ci_low": 0.38499999999999995,
+        "mean": 0.46499999999999997,
+        "median": 0.3
+      }
+    },
+    "echograph_no_chronology": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "four_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_domain_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_wording_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "shared_dataset": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "shared_study_replication": {
+          "f1": 0.5166666666666667,
+          "mae": 0.48333333333333334
+        },
+        "single_origin": {
+          "f1": 0.9333333333333333,
+          "mae": 0.13333333333333333
+        },
+        "two_roots": {
+          "f1": 0.5555555555555556,
+          "mae": 0.9333333333333333
+        },
+        "unattributed_multihop": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        },
+        "verbatim_derivative": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.7619444444444444,
+        "ci_low": 0.703888888888889,
+        "mean": 0.7338888888888891,
+        "median": 0.75
+      },
+      "root_count_mae": {
+        "ci_high": 0.535,
+        "ci_low": 0.37833333333333335,
+        "mean": 0.45499999999999996,
+        "median": 0.3
+      }
+    },
+    "echograph_no_domain": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "four_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_domain_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_wording_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "shared_dataset": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "shared_study_replication": {
+          "f1": 0.5166666666666667,
+          "mae": 0.48333333333333334
+        },
+        "single_origin": {
+          "f1": 0.9333333333333333,
+          "mae": 0.13333333333333333
+        },
+        "two_roots": {
+          "f1": 0.5555555555555556,
+          "mae": 0.9333333333333333
+        },
+        "unattributed_multihop": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        },
+        "verbatim_derivative": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.7619444444444444,
+        "ci_low": 0.703888888888889,
+        "mean": 0.7338888888888891,
+        "median": 0.75
+      },
+      "root_count_mae": {
+        "ci_high": 0.535,
+        "ci_low": 0.37833333333333335,
+        "mean": 0.45499999999999996,
+        "median": 0.3
+      }
+    },
+    "echograph_no_lexical": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "four_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_domain_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_wording_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "shared_dataset": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "shared_study_replication": {
+          "f1": 0.5166666666666667,
+          "mae": 0.48333333333333334
+        },
+        "single_origin": {
+          "f1": 0.9333333333333333,
+          "mae": 0.13333333333333333
+        },
+        "two_roots": {
+          "f1": 0.5555555555555556,
+          "mae": 0.9333333333333333
+        },
+        "unattributed_multihop": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        },
+        "verbatim_derivative": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.7619444444444444,
+        "ci_low": 0.703888888888889,
+        "mean": 0.7338888888888891,
+        "median": 0.75
+      },
+      "root_count_mae": {
+        "ci_high": 0.535,
+        "ci_low": 0.37833333333333335,
+        "mean": 0.45499999999999996,
+        "median": 0.3
+      }
+    },
+    "echograph_no_links": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "four_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_domain_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_wording_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "shared_dataset": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "shared_study_replication": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "single_origin": {
+          "f1": 0.6849206349206348,
+          "mae": 0.9166666666666666
+        },
+        "two_roots": {
+          "f1": 0.3333333333333333,
+          "mae": 1.3333333333333333
+        },
+        "unattributed_multihop": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        },
+        "verbatim_derivative": {
+          "f1": 0.6666666666666666,
+          "mae": 1.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.6732162698412698,
+        "ci_low": 0.5953571428571428,
+        "mean": 0.6351587301587303,
+        "median": 0.75
+      },
+      "root_count_mae": {
+        "ci_high": 0.7399999999999999,
+        "ci_low": 0.5166666666666666,
+        "mean": 0.625,
+        "median": 0.3
+      }
+    },
+    "echograph_no_numeric": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "four_independent": {
+          "f1": 0.9166666666666666,
+          "mae": 0.08333333333333333
+        },
+        "same_domain_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_wording_independent": {
+          "f1": 0.9833333333333333,
+          "mae": 0.016666666666666666
+        },
+        "shared_dataset": {
+          "f1": 0.95,
+          "mae": 0.15
+        },
+        "shared_study_replication": {
+          "f1": 0.5055555555555554,
+          "mae": 0.48333333333333334
+        },
+        "single_origin": {
+          "f1": 0.775,
+          "mae": 0.45
+        },
+        "two_roots": {
+          "f1": 0.6388888888888888,
+          "mae": 0.8166666666666667
+        },
+        "unattributed_multihop": {
+          "f1": 0.15000000000000002,
+          "mae": 2.466666666666667
+        },
+        "verbatim_derivative": {
+          "f1": 1.0,
+          "mae": 0.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.8103174603174602,
+        "ci_low": 0.7732529761904762,
+        "mean": 0.7919444444444445,
+        "median": 0.7952380952380953
+      },
+      "root_count_mae": {
+        "ci_high": 0.475,
+        "ci_low": 0.4166666666666667,
+        "mean": 0.44666666666666666,
+        "median": 0.5
+      }
+    },
+    "lexical_bow": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "four_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "same_domain_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "same_wording_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "shared_dataset": {
+          "f1": 0.2857142857142856,
+          "mae": 2.0
+        },
+        "shared_study_replication": {
+          "f1": 0.2857142857142856,
+          "mae": 2.0
+        },
+        "single_origin": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "two_roots": {
+          "f1": 0.5,
+          "mae": 1.0
+        },
+        "unattributed_multihop": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "verbatim_derivative": {
+          "f1": 1.0,
+          "mae": 0.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.507142857142857,
+        "ci_low": 0.507142857142857,
+        "mean": 0.507142857142857,
+        "median": 0.5071428571428571
+      },
+      "root_count_mae": {
+        "ci_high": 1.4000000000000006,
+        "ci_low": 1.4000000000000006,
+        "mean": 1.4000000000000006,
+        "median": 1.4
+      }
+    },
+    "minilm": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "four_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "same_domain_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "same_wording_independent": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "shared_dataset": {
+          "f1": 0.2857142857142856,
+          "mae": 2.0
+        },
+        "shared_study_replication": {
+          "f1": 0.2857142857142856,
+          "mae": 2.0
+        },
+        "single_origin": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "two_roots": {
+          "f1": 0.5,
+          "mae": 1.0
+        },
+        "unattributed_multihop": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "verbatim_derivative": {
+          "f1": 1.0,
+          "mae": 0.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.507142857142857,
+        "ci_low": 0.507142857142857,
+        "mean": 0.507142857142857,
+        "median": 0.5071428571428571
+      },
+      "root_count_mae": {
+        "ci_high": 1.4000000000000006,
+        "ci_low": 1.4000000000000006,
+        "mean": 1.4000000000000006,
+        "median": 1.4
+      }
+    },
+    "tfidf": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 0.6666666666666664,
+          "mae": 1.0
+        },
+        "four_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_domain_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_wording_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "shared_dataset": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "shared_study_replication": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "single_origin": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "two_roots": {
+          "f1": 0.0,
+          "mae": 2.0
+        },
+        "unattributed_multihop": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "verbatim_derivative": {
+          "f1": 1.0,
+          "mae": 0.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.46666666666666656,
+        "ci_low": 0.46666666666666656,
+        "mean": 0.46666666666666656,
+        "median": 0.4666666666666666
+      },
+      "root_count_mae": {
+        "ci_high": 1.0999999999999999,
+        "ci_low": 1.0999999999999999,
+        "mean": 1.0999999999999999,
+        "median": 1.1
+      }
+    },
+    "url_count": {
+      "by_condition": {
+        "attributed_paraphrase": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "four_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_domain_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "same_wording_independent": {
+          "f1": 1.0,
+          "mae": 0.0
+        },
+        "shared_dataset": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "shared_study_replication": {
+          "f1": 0.0,
+          "mae": 1.0
+        },
+        "single_origin": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "two_roots": {
+          "f1": 0.0,
+          "mae": 2.0
+        },
+        "unattributed_multihop": {
+          "f1": 0.0,
+          "mae": 3.0
+        },
+        "verbatim_derivative": {
+          "f1": 0.0,
+          "mae": 3.0
+        }
+      },
+      "exclusive_family_pair_f1": {
+        "ci_high": 0.30000000000000004,
+        "ci_low": 0.30000000000000004,
+        "mean": 0.30000000000000004,
+        "median": 0.3
+      },
+      "root_count_mae": {
+        "ci_high": 1.5999999999999994,
+        "ci_low": 1.5999999999999994,
+        "mean": 1.5999999999999994,
+        "median": 1.6
+      }
+    }
+  },
+  "n": 600,
+  "split": "test",
+  "study": "cpu_source_family_detection",
+  "test_access": true,
+  "thresholds": {
+    "echograph_classic": 0.5,
+    "echograph_no_attribution": 0.55,
+    "echograph_no_chronology": 0.5,
+    "echograph_no_domain": 0.5,
+    "echograph_no_lexical": 0.55,
+    "echograph_no_links": 0.55,
+    "echograph_no_numeric": 0.45,
+    "lexical_bow": 0.5,
+    "minilm": 0.5,
+    "tfidf": 0.95
+  },
+  "tuning_curves": null,
+  "worlds": 60
+}

@@ -1,0 +1,71 @@
+{
+  "completed_test_runs": [
+    "detection",
+    "confidence_simulation"
+  ],
+  "frozen": true,
+  "frozen_at": "2026-09-12T05:48:17.502193+00:00",
+  "gates": {
+    "benchmark": {
+      "case_count": 2640,
+      "errors": [],
+      "split_counts": {
+        "test": 660,
+        "train": 1650,
+        "validation": 330
+      },
+      "split_verdict_counts": {
+        "test:contradicted": 220,
+        "test:insufficient": 220,
+        "test:supported": 220,
+        "train:contradicted": 550,
+        "train:insufficient": 550,
+        "train:supported": 550,
+        "validation:contradicted": 110,
+        "validation:insufficient": 110,
+        "validation:supported": 110
+      },
+      "valid": true,
+      "world_count": 240
+    },
+    "scope": "synthetic gold-by-construction; no human-validation claim"
+  },
+  "settings": {
+    "objective": "root_count_mae_then_pair_f1",
+    "selection_split": "validation",
+    "semantic_model": {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "thresholds": {
+      "echograph_classic": 0.5,
+      "echograph_no_attribution": 0.55,
+      "echograph_no_chronology": 0.5,
+      "echograph_no_domain": 0.5,
+      "echograph_no_lexical": 0.55,
+      "echograph_no_links": 0.55,
+      "echograph_no_numeric": 0.45,
+      "lexical_bow": 0.5,
+      "minilm": 0.5,
+      "tfidf": 0.95
+    },
+    "version": "1.1"
+  },
+  "sha256": {
+    "artifacts/detection-settings-v1.1.json": "2cf64a31544a6bdee773dc0ef5b7645c8b78e704c7e366d82d42181422dafff1",
+    "data/echobench_synthetic_v1_gold.jsonl": "fc24c698dca25a5889e88354945eb5ff8b9ae2d2ebc15d5fa63de9257baae1a4",
+    "data/echobench_synthetic_v1_manifest.json": "8bd7dc9a6ec37602d5129b6a6544d2b7ee18a284bb1b35f0e468cb406c698263",
+    "data/echobench_synthetic_v1_public.jsonl": "179ccb3e6cf0a7cccacbfb0e8fd8c70512b9b688fe2bfa192c9f7427c3930936",
+    "echotrace/baselines.py": "c14188b30b74cd6218b3f755805a964f0d7646e024448d85eb7cc50268b8acbd",
+    "echotrace/echo_graph.py": "ad2aa8dbc9c4e01222a11235139162b3afd8b5bcbc7aa45c1fda854bde400939",
+    "echotrace/freeze.py": "eb91df1de7859a4b6d175dcee5a08b24fb579e1d68e79a9a02c83f546aa2d2e9",
+    "echotrace/metrics.py": "7a4667329ee00dfc6d0893bf75264b59160bddda61aaabdeafaccba6fc9afa90",
+    "experiments/protocol_v1.md": "52128ccfe47390e2fc277abf401cce29d0ec8513991b0ed7e8767e78c8814a04",
+    "scripts/evaluate_v1_detection.py": "4587a189ecb3847ecbdc2ff7a0daf194965a1707d25c80b4842aaab4d0eaef8c",
+    "scripts/generate_benchmark_v1.py": "7a1f570ab89649c64e380c8e1b222df7c6de95cb5b49b4f340818063f7b43234",
+    "scripts/simulate_confidence_v1.py": "3330e0ad6b71999631fef75ef286bf1999cdccd73df6c8e9d47f85c1f8c18ea9",
+    "scripts/validate_benchmark_v1.py": "273e267f11470c501305bd721d5054d0c1dd4705b2714aeba9f70f7b28bc92b5"
+  },
+  "study": "EchoTrace CPU study",
+  "version": "1.1"
+}

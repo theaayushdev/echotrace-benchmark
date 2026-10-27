@@ -1,0 +1,464 @@
+\documentclass[11pt]{article}
+% Official ACL style (github.com/acl-org/acl-style-files; commit in ACL_STYLE_VERSION.txt).
+% "preprint" is non-anonymous with page numbers; use "review" for anonymous submission.
+\usepackage[preprint]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{amsmath,amssymb,booktabs,array,xcolor}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\ind}{\mathbf{1}}
+\newcommand{\code}[1]{\texttt{#1}}
+% Results that do not yet exist render visibly; never replace these by hand.
+\newcommand{\pending}{\textcolor{red}{\textbf{[pending]}}}
+% Prose that must be rewritten after the held-out results are known.
+\newcommand{\afterresults}[1]{\textcolor{red}{[After results: #1]}}
+\hypersetup{pdftitle={EchoTrace: Do Language Models Mistake Repeated Reports for Independent Corroboration?},pdfauthor={Ayush Dev}}
+\title{EchoTrace: Do Language Models Mistake Repeated Reports for Independent Corroboration?}
+\author{Ayush Dev\\
+  Nepal Engineering College\\
+  Bhaktapur, Nepal}
+\input{generated/v1-results}
+\input{generated/llm-study-results}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+When several documents support a claim, a research assistant may treat them as independent
+confirmation even if they all derive from one observation. We study this \emph{false
+corroboration} in language models. We release EchoBench-Synthetic v1.4, a chronology-valid,
+gold-by-construction benchmark of 3,960 cases from 360 world-disjoint micro-worlds, 36 topics, and
+six prose styles, two of which appear only in held-out worlds. In an exploratory study on 12
+validation worlds, three freely accessible models (Qwen3.8-27B, GPT-OSS-120B, and Gemini 3.5
+Flash-Lite) answer under four conditions: no guidance, a dependence reminder, source families
+proposed by EchoGraph, an interpretable CPU detector, and gold families. Models must report how
+many independent sources the evidence contains, which lets us score overcounting automatically.
+Without guidance, GPT-OSS overcounts dependent sources in \DevGptossStandardFcr\ of cases (95\%
+CI \DevGptossStandardFcrCI), usually by reporting the number of documents; the other two models
+rarely do. Guidance removes overcounting but over-corrects: GPT-OSS then undercounts genuinely
+independent sources in \DevGptossEchographUnder\ of cases with EchoGraph families and
+\DevGptossOracleUnder\ even with gold families, and Gemini abstains on many determinate cases. No
+model's confidence in its verdict depends on how many independent sources support it. These are
+development findings, not confirmatory tests; we freeze the held-out protocol that would test
+them. EchoGraph itself reaches family-pair F1 \EchoFOneTest\ in a single held-out run after the
+freeze but remains weak on shared datasets. All experiments run on CPU and free API tiers; no human validation is claimed.
+\end{abstract}
+
+\section{Introduction}
+A research assistant may cite four pages and describe a finding as repeatedly confirmed. If three
+pages summarize the first, the answer contains four documents but one informational origin. We call
+this \emph{false corroboration}: apparent support increases because dependent reports are counted
+as independent observations. Citation checks do not expose it, because every page genuinely states
+the claim.
+
+Source dependence has long mattered in data integration \citep{dong2009dependence}, and citation
+networks can amplify claims through repeated reference \citep{greenberg2009citation}. Current
+evaluations of attributed and deep-research systems measure correctness, citation support,
+evidential force, and synthesis quality \citep{gao2023alce,du2025deepresearch,qian2026force}. They
+do not directly measure whether a system knows how many \emph{distinct} observations its sources
+represent.
+Recent formal and empirical work shows that aggregating multiplied agent reports can destroy
+calibration when their shared ancestry is ignored \citep{bara2026sybil}. Whether language models make this error when provenance must be read from the
+documents themselves, and whether simple provenance metadata prevents it, has not been tested
+directly.
+
+We test it in a controlled setting where provenance is known by construction. Each case gives a
+model the same four claim-relevant documents, varying only whether they share an origin. We ask
+three questions:
+\begin{enumerate}
+  \item \textbf{False corroboration.} Without guidance, do models report more independent sources
+  than exist when documents share an origin?
+  \item \textbf{Confidence sensitivity.} Holding the claim and verdict fixed, is a model more
+  confident when evidence comes from four independent sources than from one?
+  \item \textbf{Mitigation.} Do source families proposed by an interpretable detector reduce false
+  corroboration, beyond a plain reminder, without lowering verdict accuracy or causing models to
+  undercount independent evidence?
+\end{enumerate}
+
+Our contributions are:
+\begin{itemize}
+  \item a zero-cost exploratory evaluation of three model families across four guidance
+  conditions, with automatically scored source counts and whole-world bootstrap intervals,
+  showing that guidance can trade overcounting for undercounting;
+  \item a frozen held-out confirmatory protocol, amended from these development observations with
+  an over-correction guard, that others can run under the same free quotas;
+  \item EchoBench-Synthetic v1.4, with chronology-valid lineage, observable provenance cues,
+  36 topics, and held-out prose styles; and
+  \item EchoGraph, a CPU-only logistic source-family detector, evaluated against document,
+  domain, lexical, TF--IDF, and sentence-embedding baselines, together with an account of a
+  construction defect in our earlier release and its consequences.
+\end{itemize}
+The study measures how models use \emph{visible} provenance in synthetic documents. It does not
+establish open-web provenance recovery, factual truth, or human-validated answer quality.
+
+\section{Related Work}
+\paragraph{Attribution and research-agent evaluation.}
+ALCE evaluates correctness and citation quality in attributed answers \citep{gao2023alce}.
+Deep-research benchmarks evaluate long reports and cross-source reasoning
+\citep{du2025deepresearch,xie2026deepweb}, evidence-force evaluation separates relevance from
+warrant \citep{qian2026force}, and audits show that displayed citations need not provide verified
+attribution \citep{onweller2026cited}. Source choice can also change answers in multi-source medical
+RAG \citep{li2026transplantqa}. EchoTrace measures a different property: relationships
+\emph{between} supporting sources.
+
+\paragraph{Dependence and diversity.}
+Copy-detection models for data integration avoid double-counting repeated values
+\citep{dong2009dependence}. MMR reduces redundancy by trading relevance against novelty
+\citep{goldstein1998mmr}, but textual diversity is not evidential independence: independent studies
+may use similar language and derivatives may paraphrase. LineageRAG builds evidence lineages grounded in
+verbatim source spans \citep{zheng2026lineagerag}; EchoTrace instead infers which documents share
+an origin.
+
+\paragraph{Report multiplicity.}
+\citet{bara2026sybil} formalizes when an additional report adds no evidence, and shows with
+controlled LLM-agent extraction on synthetic documents that naive aggregation loses calibration as
+reports of one evidence root multiply. It also finds that report similarity, not true ancestry,
+drives a similarity-based deduplicator, which parallels our same-wording condition. That work
+studies aggregation over agent reports. EchoTrace is complementary and narrower: it asks whether a
+single model, reading the documents themselves, counts dependent reports as independent sources,
+and whether provenance guidance changes that count in either direction.
+
+\section{Task and Measures}
+For a focal claim $c$, let $\D_c=\{d_1,\ldots,d_n\}$ be its relevant documents. In a determinate
+case, a latent mapping $z(d)$ assigns each document to one source family, giving
+\begin{equation}
+  \F_c=\{F_k\}_{k=1}^{K},\quad F_k=\{d\in\D_c:z(d)=k\},
+\end{equation}
+where $K$ counts informational origins, not URLs or publishers. In an indeterminate case the
+correct response is to abstain from a count.
+
+\paragraph{Language-model measures.}
+A model returns a verdict (supported, contradicted, insufficient), verdict probabilities, citations,
+and $\widehat K$, the number of independent sources bearing on the claim, or \code{null} if this
+cannot be determined. The \emph{false-corroboration rate} (FCR) is the fraction of responses on
+dependent cases ($K<4$) with $\widehat K>K$; an abstention is not an overcount. \emph{Confidence sensitivity} is the within-world
+difference in the probability assigned to the gold verdict between the four-independent and
+single-origin versions of the same claim; a model that weighs independence should give a positive
+value. We also report undercounting on independent cases ($\widehat K<K$), abstention on
+determinate and on indeterminate cases, verdict accuracy, and the share of gold-verdict
+probabilities at a 0.99 ceiling, which shows whether confidence could rise at all.
+
+\paragraph{Detector measures.}
+For detectors returning a partition $\widehat\F_c$, we report root-count mean absolute error
+$\frac1N\sum_i|\widehat K_i-K_i|$ and exclusive-family pair F1 over same-family document pairs.
+
+Source-family dependence is not truth or reliability. Two independent studies may share a bias,
+and a derivative can accurately summarize strong evidence.
+
+\section{EchoBench-Synthetic v1.4}
+\paragraph{Construction.}
+EchoBench contains 360 fictional micro-worlds, each with one quantitative claim and one verdict,
+crossed with 11 provenance conditions (Table~\ref{tab:conditions}). Every case has 12 documents:
+four claim-relevant documents and eight distractors. Whole worlds are assigned to train,
+validation, and test (216/72/72), with verdicts balanced within each split. Documents use reserved
+\code{.example} domains and opaque identifiers. Public files contain only queries and documents;
+evaluator files contain relevance, verdicts, lineage, families, conditions, and splits.
+
+\begin{table}[t]
+\caption{Provenance conditions. $K$ is the gold number of source families among the four
+relevant documents; ``--'' denotes an abstention target. $\star$ marks conditions used in the
+language-model study.}
+\label{tab:conditions}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lc>{\raggedright\arraybackslash}p{2.9cm}@{}}
+\toprule
+Condition & $K$ & Intended distinction\\
+\midrule
+Single origin$^\star$ & 1 & root with three derivatives\\
+Verbatim derivative & 1 & republication with visible source\\
+Attributed paraphrase & 1 & visible source links\\
+Two roots$^\star$ & 2 & two root--summary pairs\\
+Shared dataset$^\star$ & 3 & two analyses reuse one dataset\\
+Study and replications & 3 & summary plus two replications\\
+Four independent$^\star$ & 4 & four separate samples\\
+Same wording independent$^\star$ & 4 & wording without dependence\\
+Same domain independent & 4 & publisher without dependence\\
+Unattributed repetition & -- & repetition, provenance unknown\\
+Ambiguous provenance$^\star$ & -- & unknown; abstain\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Changes from earlier releases.}
+Version 1.4 addresses three problems found in our earlier releases. First, \emph{chronology}: an
+audit of the v1.1 training split found \ChronReversed\ of \ChronEdges\ lineage edges whose source
+was dated after its derivative (Section~\ref{sec:v11}). Generation now moves each derivative after
+its sources; v1.4 has zero reversed edges. Second, \emph{observability}: a diagnostic review found
+that two conditions asserted lineage that the public text did not reveal. Verbatim republications
+now carry a visible upstream URL and attribution, and unattributed repetition now has an abstention
+target rather than a hidden chain. Third, \emph{templating}: v1.4 has 36 topics (three times v1.1),
+six prose styles per provenance role, and varied distractors. Two styles (forum and memo) appear
+only in half of the test worlds, so part of the test set uses unseen surface forms.
+
+\paragraph{Checks.}
+Structural validation confirms counts, unique identifiers, verdict balance, public/gold separation,
+split isolation, and chronology. A nearest-centroid probe on four coarse metadata features (mean
+year, domain count, URL path shape, identifier length) predicts the 11 conditions with accuracy
+\ProbeAccFour\ (chance 0.091; prespecified failure threshold 0.55). This probe cannot rule out
+textual shortcuts. Labels are deterministic consequences of the generator, not human judgments.
+
+\section{Language-Model Study}
+\paragraph{Design.}
+We use the six starred conditions in Table~\ref{tab:conditions} for the 12 validation worlds
+(four per verdict): 72 cases per arm. No test-split world has been sent to any model. Each request contains the same four relevant documents in their public order, with title, URL,
+date, outbound links, and text. Four arms differ only in their guidance:
+\emph{standard} (none); \emph{reminder} (repeated reporting need not add independent evidence,
+similar wording alone does not establish dependence, acknowledge unclear provenance);
+\emph{EchoGraph} (reminder plus detector-proposed families, labelled as possibly wrong); and
+\emph{oracle} (identical wording, gold families; for indeterminate cases, a statement that
+provenance could not be determined). The oracle arm measures the value of correct metadata; it is
+not a deployable method. Arm order rotates across cases.
+
+Every arm asks for $\widehat K$. This primes all arms equally toward considering independence, so
+the standard arm is a conservative baseline: it measures counting errors that remain even when the
+model is explicitly asked to count.
+
+\paragraph{Models.}
+We select three model families with verified free access on the study date: Qwen3.8-27B and
+GPT-OSS-120B (low reasoning effort) through Groq, and Gemini 3.5 Flash-Lite through Google's API.
+Decoding uses temperature 0 and at most 2,048 output tokens. Requested and returned model
+identifiers are logged. Requests rejected before generation (rate limit or unavailability) are
+retried with back-off; completed responses, including invalid ones, are never re-requested.
+Invalid outputs count against coverage.
+
+\paragraph{Coverage.}
+Gemini answered all 288 planned requests. The two Groq models were stopped by the free tier's
+daily limit of 200,000 tokens per model (about 190 of our requests): Qwen and GPT-OSS each completed
+all 24 requests for 8 of the 12 worlds, for coverage of \DevQwenCoverage\ and \DevGptossCoverage\
+of planned requests in their lowest arm. Missing requests are the last worlds in plan order, not
+selected by outcome. Three GPT-OSS responses cited nonexistent documents and count as invalid.
+
+\paragraph{Analysis.}
+The resampling unit is the micro-world. We report 95\% percentile intervals from 10,000
+whole-world bootstrap replicates, with contrasts paired by case. With 8--12 worlds per model, the
+intervals are wide and every result is exploratory: these worlds were also used to revise the
+protocol (Section~\ref{sec:confirm}), so they cannot test hypotheses formed from them. We apply no
+multiplicity correction and claim no confirmed effect.
+
+\section{EchoGraph Detector}
+For each time-ordered pair of documents, EchoGraph computes direct-link presence, attribution cues,
+token and five-gram Jaccard similarity, bag-of-words cosine, numeric overlap, same-domain status,
+and clipped time separation. A logistic classifier is trained on all pairs from determinate
+training cases to predict whether the two documents share a family. Pairs above a threshold are
+joined, and connected components are the families. The threshold (0.40) is chosen on validation by
+lowest root-count MAE. Baselines count URLs, assign all documents to one family, group by domain,
+or join pairs above a bag-of-words, TF--IDF, or MiniLM (\code{all-MiniLM-L6-v2}, pinned revision)
+cosine threshold. No method uses a language model or GPU.
+
+\section{Results}
+All results in this section are from validation worlds and are exploratory.
+
+\begin{table*}[t]
+\caption{Development language-model results on validation worlds. $n$: schema-valid responses
+per arm. FCR: false-corroboration rate on dependent cases (lower is better). Sens.: confidence
+sensitivity, $P(\text{gold}\mid K{=}4)-P(\text{gold}\mid K{=}1)$ within world (positive is
+appropriate). Ceil.: share of gold-verdict probabilities $\ge 0.99$. Under: undercount rate on
+independent cases. Null$_K$: abstention on determinate cases. Abst.: abstention on ambiguous cases.
+Intervals: 10,000-replicate whole-world bootstrap.}
+\label{tab:llm}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llcccccccc@{}}
+\toprule
+Model & Arm & $n$ & FCR [95\% CI] & Sens. [95\% CI] & Ceil. & Under & Null$_K$ & Abst. & Acc.\\
+\midrule
+Qwen3.8-27B & Standard & \DevQwenStandardN & \DevQwenStandardFcr\ \DevQwenStandardFcrCI & \DevQwenStandardSens\ \DevQwenStandardSensCI & \DevQwenStandardCeil & \DevQwenStandardUnder & \DevQwenStandardDetAbst & \DevQwenStandardAbst & \DevQwenStandardAcc\\
+ & Reminder & \DevQwenReminderN & \DevQwenReminderFcr\ \DevQwenReminderFcrCI & \DevQwenReminderSens\ \DevQwenReminderSensCI & \DevQwenReminderCeil & \DevQwenReminderUnder & \DevQwenReminderDetAbst & \DevQwenReminderAbst & \DevQwenReminderAcc\\
+ & EchoGraph & \DevQwenEchographN & \DevQwenEchographFcr\ \DevQwenEchographFcrCI & \DevQwenEchographSens\ \DevQwenEchographSensCI & \DevQwenEchographCeil & \DevQwenEchographUnder & \DevQwenEchographDetAbst & \DevQwenEchographAbst & \DevQwenEchographAcc\\
+ & Oracle & \DevQwenOracleN & \DevQwenOracleFcr\ \DevQwenOracleFcrCI & \DevQwenOracleSens\ \DevQwenOracleSensCI & \DevQwenOracleCeil & \DevQwenOracleUnder & \DevQwenOracleDetAbst & \DevQwenOracleAbst & \DevQwenOracleAcc\\
+\midrule
+GPT-OSS-120B & Standard & \DevGptossStandardN & \DevGptossStandardFcr\ \DevGptossStandardFcrCI & \DevGptossStandardSens\ \DevGptossStandardSensCI & \DevGptossStandardCeil & \DevGptossStandardUnder & \DevGptossStandardDetAbst & \DevGptossStandardAbst & \DevGptossStandardAcc\\
+ & Reminder & \DevGptossReminderN & \DevGptossReminderFcr\ \DevGptossReminderFcrCI & \DevGptossReminderSens\ \DevGptossReminderSensCI & \DevGptossReminderCeil & \DevGptossReminderUnder & \DevGptossReminderDetAbst & \DevGptossReminderAbst & \DevGptossReminderAcc\\
+ & EchoGraph & \DevGptossEchographN & \DevGptossEchographFcr\ \DevGptossEchographFcrCI & \DevGptossEchographSens\ \DevGptossEchographSensCI & \DevGptossEchographCeil & \DevGptossEchographUnder & \DevGptossEchographDetAbst & \DevGptossEchographAbst & \DevGptossEchographAcc\\
+ & Oracle & \DevGptossOracleN & \DevGptossOracleFcr\ \DevGptossOracleFcrCI & \DevGptossOracleSens\ \DevGptossOracleSensCI & \DevGptossOracleCeil & \DevGptossOracleUnder & \DevGptossOracleDetAbst & \DevGptossOracleAbst & \DevGptossOracleAcc\\
+\midrule
+Gemini 3.5 Flash-Lite & Standard & \DevGeminiStandardN & \DevGeminiStandardFcr\ \DevGeminiStandardFcrCI & \DevGeminiStandardSens\ \DevGeminiStandardSensCI & \DevGeminiStandardCeil & \DevGeminiStandardUnder & \DevGeminiStandardDetAbst & \DevGeminiStandardAbst & \DevGeminiStandardAcc\\
+ & Reminder & \DevGeminiReminderN & \DevGeminiReminderFcr\ \DevGeminiReminderFcrCI & \DevGeminiReminderSens\ \DevGeminiReminderSensCI & \DevGeminiReminderCeil & \DevGeminiReminderUnder & \DevGeminiReminderDetAbst & \DevGeminiReminderAbst & \DevGeminiReminderAcc\\
+ & EchoGraph & \DevGeminiEchographN & \DevGeminiEchographFcr\ \DevGeminiEchographFcrCI & \DevGeminiEchographSens\ \DevGeminiEchographSensCI & \DevGeminiEchographCeil & \DevGeminiEchographUnder & \DevGeminiEchographDetAbst & \DevGeminiEchographAbst & \DevGeminiEchographAcc\\
+ & Oracle & \DevGeminiOracleN & \DevGeminiOracleFcr\ \DevGeminiOracleFcrCI & \DevGeminiOracleSens\ \DevGeminiOracleSensCI & \DevGeminiOracleCeil & \DevGeminiOracleUnder & \DevGeminiOracleDetAbst & \DevGeminiOracleAbst & \DevGeminiOracleAcc\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{False corroboration (RQ1)}
+Without guidance, GPT-OSS overcounts on \DevGptossStandardFcr\ of dependent cases
+\DevGptossStandardFcrCI. The error has a consistent form: in 12 of its 14 overcounts the model
+reported four independent sources, the number of documents. It did the same on 7 of 9 ambiguous
+cases, where the correct response is to abstain. Qwen (\DevQwenStandardFcr) and Gemini
+(\DevGeminiStandardFcr) rarely overcount, and both intervals include zero. Qwen nevertheless
+reported four sources on 3 of 8 ambiguous cases. False corroboration therefore appears in one of
+three models when provenance is visible, and it takes the form of counting documents.
+
+\subsection{Confidence sensitivity (RQ2)}
+Confidence sensitivity is indistinguishable from zero for every model and arm: a model is no more
+confident in the gold verdict when four independent sources support it than when one origin does.
+For Qwen and Gemini this is saturation: \DevQwenStandardCeil\ and \DevGeminiStandardCeil\ of their
+gold-verdict probabilities are at least 0.99, so they could not increase. GPT-OSS stays below the
+ceiling (\DevGptossStandardCeil) yet still shows no difference
+(\DevGptossStandardSens\ \DevGptossStandardSensCI). In this setting, stated verdict probabilities
+express how clearly the documents state the claim, not how much independent evidence supports it.
+
+\subsection{Guidance and over-correction (RQ3)}
+\begin{table*}[t]
+\caption{Paired development contrasts (EchoGraph $-$ standard, and secondary contrasts). Negative
+$\Delta$FCR means fewer overcounts; positive $\Delta$Under means more undercounts (worse).
+Intervals: 95\% whole-world bootstrap.}
+\label{tab:contrast}
+\centering\small
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Qwen & GPT-OSS & Gemini\\
+\midrule
+\multicolumn{4}{@{}l}{\emph{EchoGraph $-$ standard}}\\
+$\Delta$FCR & \DevQwenEchoStdFcr & \DevGptossEchoStdFcr & \DevGeminiEchoStdFcr\\
+95\% CI & \DevQwenEchoStdFcrCI & \DevGptossEchoStdFcrCI & \DevGeminiEchoStdFcrCI\\
+$\Delta$Under & \DevQwenEchoStdUnder & \DevGptossEchoStdUnder & \DevGeminiEchoStdUnder\\
+95\% CI & \DevQwenEchoStdUnderCI & \DevGptossEchoStdUnderCI & \DevGeminiEchoStdUnderCI\\
+$\Delta$Acc & \DevQwenEchoStdAcc & \DevGptossEchoStdAcc & \DevGeminiEchoStdAcc\\
+95\% CI & \DevQwenEchoStdAccCI & \DevGptossEchoStdAccCI & \DevGeminiEchoStdAccCI\\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Secondary $\Delta$FCR}}\\
+Reminder $-$ std. & \DevQwenRemStdFcr & \DevGptossRemStdFcr & \DevGeminiRemStdFcr\\
+EchoGraph $-$ rem. & \DevQwenEchoRemFcr & \DevGptossEchoRemFcr & \DevGeminiEchoRemFcr\\
+Oracle $-$ EchoGraph & \DevQwenOracleEchoFcr & \DevGptossOracleEchoFcr & \DevGeminiOracleEchoFcr\\
+\midrule
+Coverage (min.\ arm) & \DevQwenCoverage & \DevGptossCoverage & \DevGeminiCoverage\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Every form of guidance eliminates GPT-OSS's overcounting (Table~\ref{tab:contrast}), but the plain
+reminder does so as completely as EchoGraph families do (EchoGraph $-$ reminder:
+\DevGptossEchoRemFcr). The reduction comes with a large increase in undercounting
+(\DevGptossEchoStdUnder\ \DevGptossEchoStdUnderCI): with guidance, GPT-OSS reports a single source
+for most cases, including independent ones. This persists in the oracle arm, where the prompt lists
+the four correct singleton families: on 13 of 18 independent cases GPT-OSS still reported one
+source (undercount \DevGptossOracleUnder). The model does not appear to use the metadata; instead,
+the instruction to consider dependence seems to shift its default answer from ``count the
+documents'' to ``one origin''. Gemini over-corrects differently. The counts it gives remain
+accurate, but with guidance it abstains on determinate cases (\DevGeminiEchographDetAbst\ with
+EchoGraph versus \DevGeminiStandardDetAbst\ without), mostly on independent ones: 9 of its 13
+abstentions in the EchoGraph arm were on four-independent or same-wording cases. The reminder also lowered Gemini's verdict accuracy
+(\DevGeminiRemStdAcc). Qwen counted almost perfectly in every arm, leaving nothing for guidance to
+fix.
+
+Our protocol's original mitigation criterion checked only verdict accuracy. By that criterion,
+GPT-OSS would have shown a large, apparently successful reduction in false corroboration. A
+mitigation for overcounting must therefore be evaluated together with undercounting and abstention
+on independent evidence.
+
+\subsection{Detector results}
+\begin{table}[t]
+\caption{Source-family detection on v1.4 determinate cases. Validation selected the thresholds;
+test is a single run after the protocol freeze (648 cases, 72 worlds). Higher F1 and lower MAE are
+better.}
+\label{tab:detection}
+\centering\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Validation} & \multicolumn{2}{c}{Test}\\
+Method & F1 & MAE & F1 & MAE\\
+\midrule
+URL singletons & \UrlFOneVal & \UrlMAEVal & \UrlFOneTest & \UrlMAETest\\
+All one family & \OneFOneVal & \OneMAEVal & \OneFOneTest & \OneMAETest\\
+Domain & \DomainFOneVal & \DomainMAEVal & \DomainFOneTest & \DomainMAETest\\
+Bag of words & \BowFOneVal & \BowMAEVal & \BowFOneTest & \BowMAETest\\
+TF--IDF & \TfidfFOneVal & \TfidfMAEVal & \TfidfFOneTest & \TfidfMAETest\\
+MiniLM & \MinilmFOneVal & \MinilmMAEVal & \MinilmFOneTest & \MinilmMAETest\\
+\textbf{EchoGraph} & \textbf{\EchoFOneVal} & \textbf{\EchoMAEVal} & \textbf{\EchoFOneTest} & \textbf{\EchoMAETest}\\
+\quad no links & \NoLinksFOneVal & \NoLinksMAEVal & \NoLinksFOneTest & \NoLinksMAETest\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On validation, EchoGraph reaches pair F1 \EchoFOneVal\ and MAE \EchoMAEVal, against at most
+\OneFOneVal\ F1 for any baseline (Table~\ref{tab:detection}). Removing link features lowers F1 to
+\NoLinksFOneVal: once provenance is made observable, much of the task is reading explicit links and
+attribution. Shared datasets remain the main failure (F1 \EchoSharedFOneVal), because a reused
+dataset is signalled by an identifier rather than by a link between documents. The single held-out
+run after the protocol freeze agrees with validation: EchoGraph reaches F1 \EchoFOneTest\
+\EchoFOneTestCI\ and MAE \EchoMAETest, and shared datasets remain the failure (F1
+\EchoSharedFOneTest). High detector accuracy is a property of this construction, not evidence of
+open-web provenance recovery.
+
+\subsection{From development to a confirmatory test}\label{sec:confirm}
+These observations changed the held-out protocol, which was then frozen by SHA-256 before any
+test-split access. Mitigation now
+requires, in addition to lower FCR and verdict accuracy within 0.05 of the standard arm, that
+undercounting on independent cases rise by no more than 0.10; models whose standard-arm FCR is zero
+are reported as untestable rather than as failures; and confidence sensitivity is reported with
+the ceiling rate. The amended protocol covers all 72 test worlds (1,728 requests per model). Under
+the free daily token limit, it requires about ten days per Groq model, which is why this paper
+reports development results only.
+
+\subsection{What the v1.1 chronology defect taught us}\label{sec:v11}
+Our earlier release (v1.1; 2,640 cases, 240 worlds) was evaluated once under a frozen protocol.
+EchoGraph obtained held-out pair F1 \EchoFOne\ \EchoFOneCI\ and MAE \EchoMAE, against \UrlFOne\ for
+URL counting. A training-only audit after the freeze then found that \ChronReversed\ of
+\ChronEdges\ lineage edges (26\%) ran backwards in time. Because EchoGraph orders document pairs by
+date before computing link features, the defect could affect the detector itself, not only its
+chronology feature, so those scores cannot be carried over to corrected data. We preserved the
+frozen v1.1 artifacts unchanged rather than silently regenerating them, and the defect motivated
+the repairs in v1.4. The episode illustrates that structural validators for synthetic provenance
+benchmarks should check temporal consistency of lineage, not only counts and splits.
+
+\section{Reproducibility}
+Code, data, and logs are available at
+\url{https://github.com/theaayushdev/echotrace-benchmark}. The repository contains the deterministic generators, public/gold data separation, validators,
+detector code and validation-selected settings, the frozen confirmatory protocol,
+the study runner, raw append-only response logs including failures, and analysis scripts. Every
+table value in this paper is generated from analysis artifacts by
+\code{scripts/export\_llm\_study\_results.py} and \code{scripts/export\_v1\_paper\_results.py};
+response counts quoted in the text come from \code{scripts/llm\_count\_breakdown.py}. The study requires no GPU and no paid API; it runs on
+CPU and free provider tiers. Raw logs contain no credentials.
+
+\section{Conclusion}
+In closed packets with visible provenance, one of three freely accessible models counted documents
+as independent sources, and no model's verdict confidence depended on source independence. Asking
+models to consider dependence removed overcounting but caused undercounting or abstention on
+genuinely independent evidence, even with correct provenance metadata. Provenance mitigations
+should therefore be judged on both directions of counting error. The next steps are the held-out
+run of the frozen protocol, blinded human review of the free-text answers, and real-source
+evaluation with retrieval.
+
+\section*{Limitations}\label{sec:limits}
+\paragraph{Synthetic construct.}
+Documents are generated from templates and labels follow generator rules. In v1.4 provenance is
+usually visible through links and attribution, so the study measures whether models \emph{use}
+visible provenance, not whether they discover hidden ancestry. Results on unseen prose styles
+reduce, but do not remove, the risk of template learning.
+
+\paragraph{Exploratory evidence.}
+All language-model results come from 12 validation worlds (8 complete worlds for the Groq models),
+which also informed the protocol revision. Intervals are wide, no multiplicity correction is
+applied, and no result should be read as a confirmed effect.
+
+\paragraph{No human validation.}
+No independent human annotation is complete. Primary outcomes are computed from a structured count,
+not from human judgments of whether free-text answers claim corroboration. The answers are retained
+for a later blinded human rubric.
+
+\paragraph{Closed evidence packets.}
+Models receive the four relevant documents. We do not evaluate retrieval, distractor rejection, or
+an autonomous agent. Connected components force non-overlapping families, whereas real articles may
+draw on several studies.
+
+\paragraph{Models and access.}
+We use three openly accessible models under free quotas. Provider aliases may change after the
+study date, and results may not transfer to larger proprietary systems. Asking for $\widehat K$ may
+itself change behaviour; we treat it as part of the task definition, applied equally to all arms.
+
+\paragraph{Responsible use.}
+Dependence is not a proxy for truth, quality, or misconduct. Similar wording does not establish
+copying, and a shared family can be reliable. EchoTrace should not be used to accuse authors or rank
+publishers.
+
+\bibliography{references}
+\end{document}

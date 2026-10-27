@@ -1,0 +1,326 @@
+{
+  "split": "validation",
+  "plan_sha256": "3cb54956a9a348bb65e3a3bf7f21c06dcabce8025a3f7739f678ee6f43e60e94",
+  "models": {
+    "qwen": {
+      "worlds_with_responses": 9,
+      "complete_worlds": 8,
+      "counts": {
+        "standard": {
+          "single_origin": {
+            "1": 8,
+            "2": 1
+          },
+          "two_roots": {
+            "2": 9
+          },
+          "shared_dataset": {
+            "3": 9
+          },
+          "four_independent": {
+            "4": 8
+          },
+          "same_wording_independent": {
+            "4": 8
+          },
+          "ambiguous_provenance": {
+            "4": 3,
+            "null": 5
+          }
+        },
+        "reminder": {
+          "single_origin": {
+            "1": 8,
+            "2": 1
+          },
+          "two_roots": {
+            "2": 9
+          },
+          "shared_dataset": {
+            "3": 9
+          },
+          "four_independent": {
+            "1": 1,
+            "4": 7
+          },
+          "same_wording_independent": {
+            "4": 7,
+            "null": 1
+          },
+          "ambiguous_provenance": {
+            "1": 2,
+            "null": 6
+          }
+        },
+        "echograph": {
+          "single_origin": {
+            "1": 9
+          },
+          "two_roots": {
+            "2": 8,
+            "null": 1
+          },
+          "shared_dataset": {
+            "3": 9
+          },
+          "four_independent": {
+            "4": 8
+          },
+          "same_wording_independent": {
+            "4": 7,
+            "null": 1
+          },
+          "ambiguous_provenance": {
+            "0": 1,
+            "1": 3,
+            "4": 1,
+            "null": 3
+          }
+        },
+        "oracle": {
+          "single_origin": {
+            "1": 9
+          },
+          "two_roots": {
+            "2": 9
+          },
+          "shared_dataset": {
+            "3": 9
+          },
+          "four_independent": {
+            "1": 1,
+            "4": 8
+          },
+          "same_wording_independent": {
+            "4": 7,
+            "null": 1
+          },
+          "ambiguous_provenance": {
+            "1": 2,
+            "null": 6
+          }
+        }
+      }
+    },
+    "gptoss": {
+      "worlds_with_responses": 10,
+      "complete_worlds": 8,
+      "counts": {
+        "standard": {
+          "single_origin": {
+            "1": 8,
+            "4": 2
+          },
+          "two_roots": {
+            "1": 2,
+            "2": 1,
+            "3": 2,
+            "4": 5
+          },
+          "shared_dataset": {
+            "3": 5,
+            "4": 5
+          },
+          "four_independent": {
+            "4": 8,
+            "null": 1
+          },
+          "same_wording_independent": {
+            "4": 9
+          },
+          "ambiguous_provenance": {
+            "4": 7,
+            "null": 2
+          }
+        },
+        "reminder": {
+          "single_origin": {
+            "1": 8,
+            "null": 2
+          },
+          "two_roots": {
+            "1": 9,
+            "null": 1
+          },
+          "shared_dataset": {
+            "1": 2,
+            "3": 6,
+            "null": 2
+          },
+          "four_independent": {
+            "1": 5,
+            "null": 5
+          },
+          "same_wording_independent": {
+            "1": 5,
+            "4": 1,
+            "null": 3
+          },
+          "ambiguous_provenance": {
+            "1": 3,
+            "null": 6
+          }
+        },
+        "echograph": {
+          "single_origin": {
+            "1": 8,
+            "null": 2
+          },
+          "two_roots": {
+            "1": 8,
+            "2": 1,
+            "null": 1
+          },
+          "shared_dataset": {
+            "1": 5,
+            "3": 4
+          },
+          "four_independent": {
+            "1": 7,
+            "null": 2
+          },
+          "same_wording_independent": {
+            "1": 5,
+            "4": 1,
+            "null": 3
+          },
+          "ambiguous_provenance": {
+            "1": 6,
+            "null": 3
+          }
+        },
+        "oracle": {
+          "single_origin": {
+            "1": 9
+          },
+          "two_roots": {
+            "1": 8,
+            "null": 1
+          },
+          "shared_dataset": {
+            "1": 6,
+            "3": 4
+          },
+          "four_independent": {
+            "1": 7,
+            "null": 2
+          },
+          "same_wording_independent": {
+            "1": 6,
+            "4": 1,
+            "null": 2
+          },
+          "ambiguous_provenance": {
+            "1": 4,
+            "null": 5
+          }
+        }
+      }
+    },
+    "gemini": {
+      "worlds_with_responses": 12,
+      "complete_worlds": 12,
+      "counts": {
+        "standard": {
+          "single_origin": {
+            "1": 10,
+            "2": 2
+          },
+          "two_roots": {
+            "1": 1,
+            "2": 10,
+            "null": 1
+          },
+          "shared_dataset": {
+            "3": 12
+          },
+          "four_independent": {
+            "4": 11,
+            "null": 1
+          },
+          "same_wording_independent": {
+            "4": 12
+          },
+          "ambiguous_provenance": {
+            "4": 2,
+            "null": 10
+          }
+        },
+        "reminder": {
+          "single_origin": {
+            "1": 10,
+            "null": 2
+          },
+          "two_roots": {
+            "2": 10,
+            "null": 2
+          },
+          "shared_dataset": {
+            "3": 9,
+            "null": 3
+          },
+          "four_independent": {
+            "4": 7,
+            "null": 5
+          },
+          "same_wording_independent": {
+            "4": 9,
+            "null": 3
+          },
+          "ambiguous_provenance": {
+            "null": 12
+          }
+        },
+        "echograph": {
+          "single_origin": {
+            "1": 11,
+            "null": 1
+          },
+          "two_roots": {
+            "2": 10,
+            "null": 2
+          },
+          "shared_dataset": {
+            "3": 11,
+            "null": 1
+          },
+          "four_independent": {
+            "4": 7,
+            "null": 5
+          },
+          "same_wording_independent": {
+            "4": 8,
+            "null": 4
+          },
+          "ambiguous_provenance": {
+            "null": 12
+          }
+        },
+        "oracle": {
+          "single_origin": {
+            "1": 8,
+            "null": 4
+          },
+          "two_roots": {
+            "2": 11,
+            "null": 1
+          },
+          "shared_dataset": {
+            "3": 12
+          },
+          "four_independent": {
+            "4": 6,
+            "null": 6
+          },
+          "same_wording_independent": {
+            "4": 7,
+            "null": 5
+          },
+          "ambiguous_provenance": {
+            "null": 12
+          }
+        }
+      }
+    }
+  }
+}

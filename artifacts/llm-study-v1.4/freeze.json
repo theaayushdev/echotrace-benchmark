@@ -1,0 +1,22 @@
+{
+  "study": "llm-study-v1.4",
+  "frozen_at": "2026-10-27T07:53:09.125821+00:00",
+  "sha256": {
+    "data/echobench_synthetic_v1_4/public.jsonl": "a7edd2771ddf8186367b6814f2cd77ad0d023bf40a476896ce56541b4c2030cb",
+    "data/echobench_synthetic_v1_4/gold.jsonl": "5e208936b565fff2d2ed3921f0ef75a421b9b726d234007b73ab45ae7f8c0317",
+    "data/echobench_synthetic_v1_4/manifest.json": "325410a8cc7638a2ffbc7299ba84794718acd88fe7d13ee81c415fecc8f0d789",
+    "artifacts/v1.4-dev/detection-settings-v1.4.json": "149e0c9e28826e0924319e0ed5be3460c4ab309e105c45d4fa12bfa2f29ccde3",
+    "configs/llm_study_v1.4.json": "1c8d03960e9b8403aa672f3d8c126a0eb4cadbf2876b7e63ae587942b0fab6cf",
+    "experiments/llm_study_v1.4.md": "c1429d10e8f2db51d81bf61615c257819b0a920c68a2fe56e4252151b3afea41",
+    "echotrace/llm_study.py": "61945e820016063338af1997f647dc0b682520a4bd3cd8d7b1fc7dfd981f5899",
+    "echotrace/llm_pilot.py": "12896baefbf5abda7726e16cb2f813924d024325f7216264bc407eac0a5e9afa",
+    "echotrace/echo_graph.py": "ad2aa8dbc9c4e01222a11235139162b3afd8b5bcbc7aa45c1fda854bde400939",
+    "echotrace/io.py": "83df0892b6c8e23329922348d85498cd6a1cfd5079eec2da4b7b4c4798463704",
+    "echotrace/schemas.py": "9b2d1b8c2917d654c7a3fe81ec6c3e388eb877e035f6e7a16d6002df0a3d57ed",
+    "scripts/run_llm_study.py": "cc001be1e38e8750d08df13cfcab255702f802df8d0a07bb84b2e095a3bbfa6f",
+    "scripts/evaluate_v1_detection.py": "470d1e497969fbf6833a272965413bbf837917fb626b1ee6b19727732bfa40ce",
+    "echotrace/baselines.py": "c14188b30b74cd6218b3f755805a964f0d7646e024448d85eb7cc50268b8acbd",
+    "echotrace/metrics.py": "7a4667329ee00dfc6d0893bf75264b59160bddda61aaabdeafaccba6fc9afa90"
+  },
+  "freeze_sha256": "fd96f4b602d04a70e29ce5789f4a7ead27ddae7765e993d59518d5d38023f8c3"
+}

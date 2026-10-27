@@ -1,0 +1,237 @@
+{
+  "assumptions": {
+    "conditional_independence_unit": "source_family",
+    "insufficient_evidence_likelihood_ratio": 1.0,
+    "likelihood_ratios": [
+      1.5,
+      2.0,
+      3.0,
+      5.0
+    ],
+    "priors": [
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9
+    ]
+  },
+  "benchmark_version": "1.1",
+  "echograph_classic_vs_baselines": {
+    "document_count": {
+      "excess_absolute_log_odds": {
+        "candidate_minus_reference": -0.6582353888561178,
+        "ci_high": -0.5265883110848942,
+        "ci_low": -0.7930546853688166,
+        "paired_unit": "micro_world"
+      },
+      "probability_absolute_error": {
+        "candidate_minus_reference": -0.052418724812941256,
+        "ci_high": -0.04190478078016709,
+        "ci_low": -0.06318957324091415,
+        "paired_unit": "micro_world"
+      }
+    },
+    "domain_grouping": {
+      "excess_absolute_log_odds": {
+        "candidate_minus_reference": -0.8485685133446339,
+        "ci_high": -0.68361313878792,
+        "ci_low": -1.0135238879013477,
+        "paired_unit": "micro_world"
+      },
+      "probability_absolute_error": {
+        "candidate_minus_reference": -0.0690423873716339,
+        "ci_high": -0.05563897953512212,
+        "ci_low": -0.08245866721502487,
+        "paired_unit": "micro_world"
+      }
+    },
+    "lexical_bow": {
+      "excess_absolute_log_odds": {
+        "candidate_minus_reference": -0.5313466391971072,
+        "ci_high": -0.41873287387473523,
+        "ci_low": -0.6471326232609542,
+        "paired_unit": "micro_world"
+      },
+      "probability_absolute_error": {
+        "candidate_minus_reference": -0.055483471390616906,
+        "ci_high": -0.04443333594255953,
+        "ci_low": -0.06667418668921758,
+        "paired_unit": "micro_world"
+      }
+    },
+    "minilm": {
+      "excess_absolute_log_odds": {
+        "candidate_minus_reference": -0.5313466391971072,
+        "ci_high": -0.41873287387473523,
+        "ci_low": -0.6471326232609542,
+        "paired_unit": "micro_world"
+      },
+      "probability_absolute_error": {
+        "candidate_minus_reference": -0.055483471390616906,
+        "ci_high": -0.04443333594255953,
+        "ci_low": -0.06667418668921758,
+        "paired_unit": "micro_world"
+      }
+    },
+    "tfidf": {
+      "excess_absolute_log_odds": {
+        "candidate_minus_reference": -0.341013514708591,
+        "ci_high": -0.2553636086887589,
+        "ci_low": -0.4298752922041671,
+        "paired_unit": "micro_world"
+      },
+      "probability_absolute_error": {
+        "candidate_minus_reference": -0.02723883561954541,
+        "ci_high": -0.02035263417285957,
+        "ci_low": -0.03448515665217472,
+        "paired_unit": "micro_world"
+      }
+    }
+  },
+  "methods": {
+    "document_count": {
+      "excess_absolute_log_odds": {
+        "ci_high": 1.1927542467947003,
+        "ci_low": 0.8374657477494704,
+        "mean": 1.0151099972720852,
+        "median": 1.5226649959081278
+      },
+      "mean_probability_error_by_likelihood_ratio": {
+        "1.5": 0.06437215459114971,
+        "2.0": 0.09224775209022909,
+        "3.0": 0.09561518223760723,
+        "5.0": 0.07410866909951586
+      },
+      "probability_absolute_error": {
+        "ci_high": 0.09586347891793495,
+        "ci_low": 0.06730840009131601,
+        "mean": 0.08158593950462549,
+        "median": 0.12237890925693823
+      }
+    },
+    "domain_grouping": {
+      "excess_absolute_log_odds": {
+        "ci_high": 1.4163956680687066,
+        "ci_low": 0.9944905754524959,
+        "mean": 1.2054431217606016,
+        "median": 1.808164682640902
+      },
+      "mean_probability_error_by_likelihood_ratio": {
+        "1.5": 0.07656281024664101,
+        "2.0": 0.11015416398458039,
+        "3.0": 0.11537967096266516,
+        "5.0": 0.09074176305938599
+      },
+      "probability_absolute_error": {
+        "ci_high": 0.11539628242439884,
+        "ci_low": 0.08102292170223749,
+        "mean": 0.09820960206331815,
+        "median": 0.1473144030949772
+      }
+    },
+    "echograph_classic": {
+      "excess_absolute_log_odds": {
+        "ci_high": 0.4488689519187502,
+        "ci_low": 0.2664663742839224,
+        "mean": 0.3568746084159674,
+        "median": 0.23791640561064498
+      },
+      "mean_probability_error_by_likelihood_ratio": {
+        "1.5": 0.02263742579047938,
+        "2.0": 0.03247495600934262,
+        "3.0": 0.03402126044559345,
+        "5.0": 0.027535216521321487
+      },
+      "probability_absolute_error": {
+        "ci_high": 0.03668421838500649,
+        "ci_low": 0.02211645840278053,
+        "mean": 0.029167214691684228,
+        "median": 0.019453099350529864
+      }
+    },
+    "lexical_bow": {
+      "excess_absolute_log_odds": {
+        "ci_high": 1.0436599659453627,
+        "ci_low": 0.7327825292807866,
+        "mean": 0.8882212476130746,
+        "median": 1.332331871419612
+      },
+      "mean_probability_error_by_likelihood_ratio": {
+        "1.5": 0.057534401963763325,
+        "2.0": 0.08681636685328406,
+        "3.0": 0.10202970501297198,
+        "5.0": 0.09222227049918516
+      },
+      "probability_absolute_error": {
+        "ci_high": 0.09946455614670385,
+        "ci_low": 0.06983681601789843,
+        "mean": 0.08465068608230114,
+        "median": 0.12697602912345168
+      }
+    },
+    "minilm": {
+      "excess_absolute_log_odds": {
+        "ci_high": 1.0436599659453627,
+        "ci_low": 0.7327825292807866,
+        "mean": 0.8882212476130746,
+        "median": 1.332331871419612
+      },
+      "mean_probability_error_by_likelihood_ratio": {
+        "1.5": 0.057534401963763325,
+        "2.0": 0.08681636685328406,
+        "3.0": 0.10202970501297198,
+        "5.0": 0.09222227049918516
+      },
+      "probability_absolute_error": {
+        "ci_high": 0.09946455614670385,
+        "ci_low": 0.06983681601789843,
+        "mean": 0.08465068608230114,
+        "median": 0.12697602912345168
+      }
+    },
+    "oracle_family_count": {
+      "excess_absolute_log_odds": {
+        "ci_high": 0.0,
+        "ci_low": 0.0,
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "mean_probability_error_by_likelihood_ratio": {
+        "1.5": 0.0,
+        "2.0": 0.0,
+        "3.0": 0.0,
+        "5.0": 0.0
+      },
+      "probability_absolute_error": {
+        "ci_high": 0.0,
+        "ci_low": 0.0,
+        "mean": 0.0,
+        "median": 0.0
+      }
+    },
+    "tfidf": {
+      "excess_absolute_log_odds": {
+        "ci_high": 0.8200185446713562,
+        "ci_low": 0.5757577015777606,
+        "mean": 0.6978881231245584,
+        "median": 1.0468321846868378
+      },
+      "mean_probability_error_by_likelihood_ratio": {
+        "1.5": 0.04424926010889081,
+        "2.0": 0.06339725694806564,
+        "3.0": 0.06592360316147514,
+        "5.0": 0.052054081026487
+      },
+      "probability_absolute_error": {
+        "ci_high": 0.06627710911569482,
+        "ci_low": 0.04653499150676445,
+        "mean": 0.05640605031122963,
+        "median": 0.08460907546684446
+      }
+    }
+  },
+  "split": "test",
+  "study": "confidence_inflation_simulation",
+  "test_access": true
+}

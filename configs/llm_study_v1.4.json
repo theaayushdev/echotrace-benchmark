@@ -1,0 +1,29 @@
+{
+  "qwen": {
+    "provider": "groq",
+    "model": "qwen/qwen3.8-27b",
+    "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+    "key_env": "GROQ_API_KEY",
+    "max_tokens": 2048,
+    "interval_seconds": 20,
+    "extra": {}
+  },
+  "gptoss": {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+    "key_env": "GROQ_API_KEY",
+    "max_tokens": 2048,
+    "interval_seconds": 20,
+    "extra": {"reasoning_effort": "low"}
+  },
+  "gemini": {
+    "provider": "google",
+    "model": "gemini-3.5-flash-lite",
+    "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    "key_env": "GEMINI_API_KEY",
+    "max_tokens": 2048,
+    "interval_seconds": 8,
+    "extra": {}
+  }
+}
